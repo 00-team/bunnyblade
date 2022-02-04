@@ -1,2 +1,2 @@
 # bunnyblade
-BunnyBlade is a advance TODO App
+BunnyBlade is an advance TODO App
