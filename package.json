@@ -1,0 +1,50 @@
+{
+    "name": "bunnyblade",
+    "version": "0.0.1",
+    "description": "BunnyBlade is an advance TODO App",
+    "main": "",
+    "scripts": {
+        "start": ""
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/00-team/bunnyblade.git"
+    },
+    "keywords": [],
+    "author": "00 Team",
+    "license": "GPL",
+    "bugs": {
+        "url": "https://github.com/00-team/bunnyblade/issues"
+    },
+    "homepage": "https://github.com/00-team/bunnyblade#readme",
+    "dependencies": {
+        "react": "^17.0.2",
+        "react-alert": "^7.0.3",
+        "react-dom": "^17.0.2",
+        "react-icons": "^4.3.1",
+        "react-redux": "^7.2.6",
+        "redux": "^4.1.2",
+        "redux-devtools-extension": "^2.13.9",
+        "redux-thunk": "^2.4.1"
+    },
+    "devDependencies": {
+        "@types/react": "^17.0.39",
+        "@types/react-alert": "^5.2.1",
+        "@types/react-dom": "^17.0.11",
+        "@types/react-redux": "^7.1.22",
+        "autoprefixer": "^10.4.2",
+        "css-loader": "^6.6.0",
+        "electron": "^17.0.0",
+        "electron-reload": "^2.0.0-alpha.1",
+        "html-webpack-plugin": "^5.5.0",
+        "postcss-loader": "^6.2.1",
+        "sass": "^1.49.7",
+        "sass-loader": "^12.4.0",
+        "style-loader": "^3.3.1",
+        "ts-loader": "^9.2.6",
+        "ts-node": "^10.4.0",
+        "typescript": "^4.5.5",
+        "webpack": "^5.68.0",
+        "webpack-cli": "^4.9.2"
+    }
+}

@@ -1,0 +1,6 @@
+;= npm
+
+s=npm start
+build=npm run build
+
+;= doskey /macrofile=doskey.macro
