@@ -8,7 +8,7 @@ import { resolve, APP_DIR } from './config/path'
 import { DEBUG, App, APP_ICON } from './config/main'
 
 // debug setup
-if (DEBUG) electronReload(APP_DIR, {})
+if (DEBUG) electronReload(resolve(APP_DIR, '../'), {})
 
 // global variables
 var TaryMenu: Tray | null = null
