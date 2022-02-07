@@ -2,7 +2,7 @@
     "compilerOptions": {
         "allowUnreachableCode": false,
         "allowUnusedLabels": false,
-        "target": "es5",
+        "target": "ESNext",
         "downlevelIteration": true,
         "module": "CommonJS",
         "lib": ["DOM", "DOM.Iterable", "ESNext"],
@@ -40,6 +40,5 @@
         "forceConsistentCasingInFileNames": true,
         "resolveJsonModule": true
     },
-    "include": ["src/**/*"],
     "exclude": ["webpack/**/*", "*.js"]
 }
