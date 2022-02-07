@@ -1,0 +1,37 @@
+@use 'config';
+@use 'theme/dark' as *;
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #040404;
+    color: #f2f2f2;
+    border: 1px solid red;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+
+    @include dark;
+}
+
+// scroll bar
+// ::-webkit-scrollbar {
+//     width: 14px;
+//     background: var(--primary-color);
+// }
+
+// ::-webkit-scrollbar-thumb {
+//     background-color: config.$background_color;
+//     border: 3px solid var(--primary-color);
+//     cursor: pointer;
+//     border-radius: 20px;
+// }
+
+// ::selection {
+//     color: var(--primary-color);
+//     background-color: #555;
+// }
