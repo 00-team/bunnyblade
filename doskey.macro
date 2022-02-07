@@ -1,6 +1,7 @@
 ;= npm
 
 s=npm start
+e=npm run electron
 build=npm run build
 
 ;= doskey /macrofile=doskey.macro
