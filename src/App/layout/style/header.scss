@@ -1,3 +1,5 @@
 .header-container {
     background-color: red;
+    -webkit-app-region: drag;
+    // -webkit-app-region: no-drag;
 }
