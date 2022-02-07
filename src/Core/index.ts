@@ -26,6 +26,7 @@ const CreateWindow = (): BrowserWindow => {
         show: false,
         maximizable: false,
         resizable: false,
+        fullscreenable: false,
         frame: false,
 
         icon: APP_ICON,
@@ -73,7 +74,7 @@ const CreateTray = (win: BrowserWindow) => {
         {
             label: 'Close',
             click: () => {
-                win.maximize()
+                win.minimize()
                 win.hide()
             },
         },

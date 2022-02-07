@@ -1,5 +1,58 @@
+@use 'mixins' as *;
+@use 'fonts' as *;
+
 .header-container {
-    background-color: red;
-    -webkit-app-region: drag;
-    // -webkit-app-region: no-drag;
+    background-color: #090909;
+    padding: 0.2rem;
+
+    .title {
+        @include TitleFont(18px);
+        user-select: none;
+        width: calc(100% - 74px);
+        -webkit-app-region: drag;
+    }
+
+    .open {
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 1000;
+        @include box(40px);
+
+        svg {
+            position: absolute;
+            height: 56px;
+            right: 0;
+            padding: 4px;
+            top: -56px;
+            transition: 0ms top;
+
+            path {
+                transform: translateY(-10px);
+                transition: transform 400ms ease;
+                // pointer-events: none;
+                cursor: pointer;
+
+                &.close {
+                    fill: red;
+                }
+
+                &.minimize {
+                    fill: #222;
+                }
+
+                &.icon {
+                    pointer-events: none;
+                    fill: #fff;
+                }
+            }
+        }
+
+        &:hover svg {
+            top: 0;
+            path {
+                transform: translateY(0);
+            }
+        }
+    }
 }

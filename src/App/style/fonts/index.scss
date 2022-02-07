@@ -1,12 +1,15 @@
-@use './config.scss' as *;
+// @mixin MainFont($s: 18px) {
+//     font-size: $s;
+//     font-family: $MAIN, $BACKUP;
+// }
 
-@mixin MainFont($s: 18px) {
-    font-size: $s;
-    font-family: $MAIN, $BACKUP;
-}
+// @mixin DisplayFont($s: 18px) {
+//     font-size: $s;
+//     font-family: $DISPLAY, $BACKUP;
+//     text-transform: uppercase;
+// }
 
-@mixin DisplayFont($s: 18px) {
+@mixin TitleFont($s: 20px) {
     font-size: $s;
-    font-family: $DISPLAY, $BACKUP;
-    text-transform: uppercase;
+    font-family: 'Quicksand', sans-serif;
 }
