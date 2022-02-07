@@ -7,7 +7,8 @@
         "start": "webpack -c webpack/dev.ts",
         "prebuild": "webpack -c webpack/build.ts",
         "build": "echo build",
-        "electron": "tsc -p ./src/Core/ && electron ."
+        "electron": "electron .",
+        "dev": "tsc -p ./src/Core/ -w"
     },
     "repository": {
         "type": "git",

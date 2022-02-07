@@ -1,6 +1,7 @@
 ;= npm
 
 s=npm start
+d=npm run dev
 e=npm run electron
 build=npm run build
 
