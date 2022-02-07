@@ -2,9 +2,12 @@
     "name": "bunnyblade",
     "version": "0.0.1",
     "description": "BunnyBlade is an advance TODO App",
-    "main": "",
+    "main": "./dist/core/index.js",
     "scripts": {
-        "start": ""
+        "start": "webpack -c webpack/dev.ts",
+        "prebuild": "webpack -c webpack/build.ts",
+        "build": "echo build",
+        "electron": "tsc -p ./src/Core/ && electron ."
     },
     "repository": {
         "type": "git",
@@ -32,12 +35,10 @@
         "@types/react-alert": "^5.2.1",
         "@types/react-dom": "^17.0.11",
         "@types/react-redux": "^7.1.22",
-        "autoprefixer": "^10.4.2",
         "css-loader": "^6.6.0",
         "electron": "^17.0.0",
         "electron-reload": "^2.0.0-alpha.1",
         "html-webpack-plugin": "^5.5.0",
-        "postcss-loader": "^6.2.1",
         "sass": "^1.49.7",
         "sass-loader": "^12.4.0",
         "style-loader": "^3.3.1",
