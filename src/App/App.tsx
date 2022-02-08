@@ -2,6 +2,8 @@ import React, { FC } from 'react'
 
 // layout
 import Header from './layout/Header'
+import Todo from './layout/Todo'
+import Categories from './layout/Categories'
 
 import './style/base.scss'
 
@@ -9,6 +11,10 @@ const App: FC = () => {
     return (
         <>
             <Header />
+            <main>
+                <Todo />
+                <Categories />
+            </main>
         </>
     )
 }
