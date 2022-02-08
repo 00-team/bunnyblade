@@ -7,7 +7,7 @@
     --accent-color: #f2f2f2;
     --other-color: #272727;
 
-    --base-red: #e9004e;
+    --base-red: #c30a0a;
     --base-green: #00d076;
     --base-blue: #0260e8;
     --base-yellow: #ffc11e;
@@ -24,7 +24,7 @@
 
     --header-A-close-BG: var(--header-A-BG);
     --header-A-close-FG: var(--accent-color);
-    --header-A-close-BG-hover: #e1000f;
+    --header-A-close-BG-hover: var(--base-red);
     --header-A-close-FG-hover: var(--header-A-close-FG);
 
     --header-A-minimize-BG: var(--header-A-BG);
