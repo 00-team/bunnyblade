@@ -2,13 +2,14 @@
 @use 'fonts' as *;
 
 .header-container {
-    background-color: #090909;
-    padding: 0.2rem;
+    color: var(--header-FG);
+    background-color: var(--header-BG);
 
     .title {
         @include TitleFont(18px);
         user-select: none;
         width: calc(100% - 74px);
+        padding: 0.2rem;
         -webkit-app-region: drag;
     }
 
@@ -29,21 +30,38 @@
 
             path {
                 transform: translateY(-10px);
-                transition: transform 400ms ease;
-                // pointer-events: none;
+                transition: transform 400ms ease, fill 200ms ease-in-out;
                 cursor: pointer;
 
                 &.close {
-                    fill: red;
+                    fill: var(--header-A-close-BG);
+                    &:hover {
+                        fill: var(--header-A-close-BG-hover);
+
+                        + path.close-icon {
+                            fill: var(--header-A-close-FG-hover);
+                        }
+                    }
+                }
+
+                &.close-icon {
+                    pointer-events: none;
+                    fill: var(--header-A-close-FG);
                 }
 
                 &.minimize {
-                    fill: #222;
-                }
+                    fill: var(--header-A-minimize-BG);
+                    &:hover {
+                        fill: var(--header-A-minimize-BG-hover);
 
-                &.icon {
+                        + path.minimize-icon {
+                            fill: var(--header-A-minimize-FG-hover);
+                        }
+                    }
+                }
+                &.minimize-icon {
                     pointer-events: none;
-                    fill: #fff;
+                    fill: var(--header-A-minimize-FG);
                 }
             }
         }
