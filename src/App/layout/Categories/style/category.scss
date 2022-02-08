@@ -1,0 +1,21 @@
+@use 'mixins' as *;
+@use 'fonts' as *;
+
+.categories-container .categories .category {
+    display: flex;
+    flex-direction: column;
+
+    padding: 0.5rem 1rem;
+    background-color: #272727;
+    color: #f2f2f2;
+
+    .name-wrapper {
+        width: 100%;
+        @include TextFont;
+        text-transform: capitalize;
+        font-weight: 600;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
