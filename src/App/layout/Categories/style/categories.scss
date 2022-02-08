@@ -3,6 +3,11 @@
 .categories-container {
     @include box(300px, 100%);
     flex-shrink: 0;
-    border-left: 1px solid #777;
+    // border-left: 1px solid #777;
     position: relative;
+
+    .categories {
+        background-color: #333;
+        @include box(100%);
+    }
 }
