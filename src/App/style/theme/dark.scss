@@ -17,10 +17,10 @@
     // header colors
     // A == action
 
-    --header-BG: #090909;
+    --header-BG: #101010;
     --header-FG: var(--accent-color);
 
-    --header-A-BG: #121212;
+    --header-A-BG: #222;
 
     --header-A-close-BG: var(--header-A-BG);
     --header-A-close-FG: var(--accent-color);
@@ -29,6 +29,6 @@
 
     --header-A-minimize-BG: var(--header-A-BG);
     --header-A-minimize-FG: var(--accent-color);
-    --header-A-minimize-BG-hover: #222;
+    --header-A-minimize-BG-hover: #333;
     --header-A-minimize-FG-hover: var(--header-A-minimize-FG);
 }
