@@ -8,6 +8,7 @@ import Categories from './layout/Categories'
 // const w = 6
 // const h = 5.2
 
+import './style/fonts/imports.scss'
 import './style/base.scss'
 
 const App: FC = () => {
