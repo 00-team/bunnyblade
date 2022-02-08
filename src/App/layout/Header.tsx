@@ -30,11 +30,7 @@ const Header: FC = () => {
                 onMouseEnter={() => setActions(true)}
                 onMouseLeave={() => setActions(false)}
             >
-                <svg
-                    viewBox='0 0 10.8 8'
-                    xmlns='http://www.w3.org/2000/svg'
-                    style={Delay(undefined, '600ms')}
-                >
+                <svg viewBox='0 0 10.8 8' style={Delay(undefined, '600ms')}>
                     <path
                         className='close'
                         d='M9.3 0 6.3 0 4.8 2.6 6.3 5.2 9.3 5.2 10.8 2.6 9.3 0Z'
