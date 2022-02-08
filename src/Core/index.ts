@@ -1,4 +1,5 @@
 import { app, BrowserWindow, Menu, nativeImage, Tray } from 'electron'
+import { ipcMain } from 'electron'
 import electronReload from 'electron-reload'
 
 // paths
@@ -33,6 +34,7 @@ const CreateWindow = (): BrowserWindow => {
 
         webPreferences: {
             devTools: DEBUG,
+            preload: resolve(__dirname, 'preload.js'),
         },
     })
 
@@ -47,6 +49,19 @@ const CreateWindow = (): BrowserWindow => {
             e.preventDefault()
             win.minimize()
             win.hide()
+        }
+    })
+
+    ipcMain.on('window:action', (_, type) => {
+        switch (type) {
+            case 'close':
+                win.close()
+                break
+            case 'minimize':
+                win.minimize()
+                break
+            default:
+                break
         }
     })
 

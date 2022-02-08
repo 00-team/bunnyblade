@@ -48,7 +48,7 @@
             }
         }
 
-        &:hover svg {
+        &.active svg {
             top: 0;
             path {
                 transform: translateY(0);
