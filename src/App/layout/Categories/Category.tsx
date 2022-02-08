@@ -1,29 +1,44 @@
 import React, { FC, useState } from 'react'
 
+// redux
+import { CategoryType } from '../../redux/models'
+
+// style
 import './style/category.scss'
 
-interface CategoryProps {
-    name: string | null
-}
+const Category: FC<CategoryType> = props => {
+    const { name } = props
 
-const Category: FC<CategoryProps> = ({ name }) => {
-    const [EditName, setEditName] = useState(false)
-    // const [TheName, setTheName] = useState(name)
+    if (!name) {
+        return <NullCategory {...props} />
+    }
+
+    const [EditName, setEditName] = useState(true)
+    const [TheName, setTheName] = useState(name)
 
     return (
         <div className='category'>
-            {/* {name && (
-                <input type='text' className='name' value={name} disabled />
-            )} */}
             <div
                 className='name-wrapper'
-                onClick={() => setEditName(!EditName)}
+                onDoubleClick={() => setEditName(!EditName)}
             >
-                {EditName}
-                <span>{name}</span>
+                {EditName ? (
+                    <input
+                        type='text'
+                        defaultValue={TheName}
+                        onChange={e => setTheName(e.target.value)}
+                        onDoubleClick={e => e.preventDefault()}
+                    />
+                ) : (
+                    <span>{TheName}</span>
+                )}
             </div>
         </div>
     )
 }
 
 export default Category
+
+const NullCategory: FC = () => {
+    return <></>
+}

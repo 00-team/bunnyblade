@@ -17,5 +17,17 @@
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+        cursor: pointer;
+
+        input {
+            border: 0;
+            border-bottom: 1px solid #f2f2f2;
+            @include TextFont;
+            background-color: transparent;
+            width: 100%;
+            text-transform: capitalize;
+            font-weight: 500;
+            outline: 0;
+        }
     }
 }
