@@ -1,6 +1,8 @@
+@use 'mixins' as *;
+
 .categories-container {
-    width: 300px;
+    @include box(300px, 100%);
     flex-shrink: 0;
-    // background-color: green;
-    height: 100%;
+    border-left: 1px solid #777;
+    position: relative;
 }

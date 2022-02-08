@@ -1,12 +1,17 @@
 import React, { FC } from 'react'
 
+// components
+import Actions from './Actions'
+
 // style
 import './style/categories.scss'
 
-interface CategoriesProps {}
-
-const Categories: FC<CategoriesProps> = () => {
-    return <div className='categories-container'>cae</div>
+const Categories: FC = () => {
+    return (
+        <div className='categories-container'>
+            <Actions />
+        </div>
+    )
 }
 
 export default Categories
