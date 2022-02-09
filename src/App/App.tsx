@@ -2,12 +2,13 @@ import React, { FC } from 'react'
 
 // layout
 import Header from './layout/Header'
+
 import Todo from './layout/Todo'
 import Categories from './layout/Categories'
 
 // components
 // import Hexaput from './components/common/Hexaput'
-// Hexaput
+
 // const w = 6
 // const h = 5.2
 
@@ -21,6 +22,7 @@ const App: FC = () => {
             <main>
                 {/* <Hexaput /> */}
                 <Todo />
+                <Categories />
                 {/* 
                 <svg
                     style={{ width: '100vw', height: 'calc(100vh - 28px)' }}
@@ -41,8 +43,6 @@ const App: FC = () => {
                     <line stroke='red' x1={w} y1={h} x2={w} y2='0' />
                     <line stroke='red' x1={w} y1='0' x2='0' y2='0' />
                 </svg> */}
-
-                <Categories />
             </main>
         </>
     )

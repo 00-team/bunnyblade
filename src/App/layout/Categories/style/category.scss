@@ -30,4 +30,14 @@
             padding: 0.25em 0;
         }
     }
+
+    .todos-wrapper {
+        ul {
+            list-style: none;
+
+            li {
+                background-color: red;
+            }
+        }
+    }
 }

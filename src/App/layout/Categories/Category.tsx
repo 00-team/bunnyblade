@@ -10,14 +10,20 @@ import Hexaput from '../../components/common/Hexaput'
 import './style/category.scss'
 
 const Category: FC<CategoryType> = props => {
-    const { name } = props
+    const { name, todos } = props
 
     if (!name) {
         return <NullCategory {...props} />
     }
 
-    const [EditName, setEditName] = useState(true)
+    const [EditName, setEditName] = useState(false)
     const [CategoryName, setCategoryName] = useState(name)
+
+    const Save = (NewName: string) => {
+        setEditName(false)
+        if (!NewName) return alert('error')
+        setCategoryName(NewName)
+    }
 
     return (
         <div className='category'>
@@ -26,10 +32,7 @@ const Category: FC<CategoryType> = props => {
                     <Hexaput
                         init={CategoryName}
                         quit={() => setEditName(false)}
-                        onSave={n => {
-                            setCategoryName(n)
-                            setEditName(false)
-                        }}
+                        onSave={n => Save(n)}
                     />
                 ) : (
                     <span
@@ -39,6 +42,13 @@ const Category: FC<CategoryType> = props => {
                         {CategoryName}
                     </span>
                 )}
+            </div>
+            <div className='todos-wrapper'>
+                <ul>
+                    {todos.map((todo, index) => (
+                        <li key={index}>{todo.name}</li>
+                    ))}
+                </ul>
             </div>
         </div>
     )
