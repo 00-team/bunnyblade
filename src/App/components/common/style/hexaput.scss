@@ -6,7 +6,7 @@
     $border-height: 0.15em;
 
     overflow: hidden;
-    @include box(max-content);
+    @include box(100%, max-content);
     @include f-center;
     font: inherit;
 
@@ -32,46 +32,45 @@
         }
     }
 
-    div {
+    .hexaput-border {
         overflow: hidden;
         position: absolute;
         height: $border-height;
         pointer-events: none;
-    }
 
-    span {
-        position: absolute;
-        display: block;
-        width: 0%;
-        height: 100%;
-        background-color: #fff;
-        pointer-events: none;
-        transition: width 300ms;
+        span {
+            position: absolute;
+            display: block;
+            width: 0%;
+            height: 100%;
+            background-color: #fff;
+            pointer-events: none;
+            transition: width 300ms;
+        }
+        &.b1 {
+            width: calc(100% - $left);
+            left: $left;
+            bottom: 0;
+            span {
+                transition-delay: 140ms;
+            }
+        }
+        &.b2 {
+            width: 1.4em;
+            left: $left + 0.13em;
+            bottom: 0.07em;
+            transform: rotate(-120deg);
+            transform-origin: left bottom;
+            span {
+                right: 0;
+                transition-duration: 150ms;
+            }
+        }
     }
 
     &.active {
-        span {
+        .hexaput-border span {
             width: 100%;
-        }
-    }
-
-    .border-1 {
-        width: calc(100% - $left);
-        left: $left;
-        bottom: 0;
-        span {
-            transition-delay: 140ms;
-        }
-    }
-    .border-2 {
-        width: 1.4em;
-        left: $left + 0.13em;
-        bottom: 0.07em;
-        transform: rotate(-120deg);
-        transform-origin: left bottom;
-        span {
-            right: 0;
-            transition-duration: 150ms;
         }
     }
 }

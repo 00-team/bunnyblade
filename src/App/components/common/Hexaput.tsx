@@ -53,10 +53,10 @@ const Hexaput: FC<HexaputProps> = ({ init, onChange, onSave, quit }) => {
                 tabIndex={0}
                 spellCheck={false}
             />
-            <div className='border-1'>
+            <div className='hexaput-border b1'>
                 <span style={Style(1)}></span>
             </div>
-            <div className='border-2'>
+            <div className='hexaput-border b2'>
                 <span style={Style(2)}></span>
             </div>
         </div>
