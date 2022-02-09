@@ -1,0 +1,77 @@
+@use 'mixins' as *;
+@use 'fonts' as *;
+
+.hexaput-container {
+    $left: 0.7em;
+    $border-height: 0.15em;
+
+    overflow: hidden;
+    @include box(max-content);
+    @include f-center;
+    font: inherit;
+
+    background-color: transparent;
+    position: relative;
+    padding-left: $left;
+
+    .hexaput {
+        width: 100%;
+        background-color: transparent;
+        pointer-events: all;
+        border: 0;
+        font: inherit;
+        user-select: auto;
+        padding-left: 0.2em;
+        padding-block: 0.1em + $border-height;
+
+        outline: 0;
+
+        &:disabled {
+            color: #fff;
+            cursor: text;
+        }
+    }
+
+    div {
+        overflow: hidden;
+        position: absolute;
+        height: $border-height;
+        pointer-events: none;
+    }
+
+    span {
+        position: absolute;
+        display: block;
+        width: 0%;
+        height: 100%;
+        background-color: #fff;
+        pointer-events: none;
+        transition: width 300ms;
+    }
+
+    &.active {
+        span {
+            width: 100%;
+        }
+    }
+
+    .border-1 {
+        width: calc(100% - $left);
+        left: $left;
+        bottom: 0;
+        span {
+            transition-delay: 140ms;
+        }
+    }
+    .border-2 {
+        width: 1.4em;
+        left: $left + 0.13em;
+        bottom: 0.07em;
+        transform: rotate(-120deg);
+        transform-origin: left bottom;
+        span {
+            right: 0;
+            transition-duration: 150ms;
+        }
+    }
+}
