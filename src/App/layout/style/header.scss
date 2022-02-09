@@ -8,7 +8,7 @@
     .title {
         @include TitleFont(18px);
         user-select: none;
-        width: calc(100% - 74px);
+        width: calc(100% - 73px);
         padding: 0.2rem;
         -webkit-app-region: drag;
     }
@@ -18,7 +18,7 @@
         top: 0;
         right: 0;
         z-index: 1000;
-        @include box(40px);
+        @include box(20px);
 
         svg {
             position: absolute;
