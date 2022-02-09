@@ -3,6 +3,9 @@ import React, { FC, useState } from 'react'
 // redux
 import { CategoryType } from '../../redux/models'
 
+// components
+import Hexaput from '../../components/common/Hexaput'
+
 // style
 import './style/category.scss'
 
@@ -14,23 +17,27 @@ const Category: FC<CategoryType> = props => {
     }
 
     const [EditName, setEditName] = useState(true)
-    const [TheName, setTheName] = useState(name)
+    const [CategoryName, setCategoryName] = useState(name)
 
     return (
         <div className='category'>
-            <div
-                className='name-wrapper'
-                onDoubleClick={() => setEditName(!EditName)}
-            >
+            <div className='name-wrapper'>
                 {EditName ? (
-                    <input
-                        type='text'
-                        defaultValue={TheName}
-                        onChange={e => setTheName(e.target.value)}
-                        onDoubleClick={e => e.preventDefault()}
+                    <Hexaput
+                        init={CategoryName}
+                        quit={() => setEditName(false)}
+                        onSave={n => {
+                            setCategoryName(n)
+                            setEditName(false)
+                        }}
                     />
                 ) : (
-                    <span>{TheName}</span>
+                    <span
+                        onDoubleClick={() => setEditName(!EditName)}
+                        className='static-name'
+                    >
+                        {CategoryName}
+                    </span>
                 )}
             </div>
         </div>

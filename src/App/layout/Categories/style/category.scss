@@ -5,7 +5,7 @@
     display: flex;
     flex-direction: column;
 
-    padding: 0.5rem 1rem;
+    padding: 0.5em;
     background-color: #272727;
     color: #f2f2f2;
 
@@ -18,16 +18,16 @@
         overflow: hidden;
         text-overflow: ellipsis;
         cursor: pointer;
+        user-select: none;
+        justify-content: center;
 
-        input {
-            border: 0;
-            border-bottom: 1px solid #f2f2f2;
-            @include TextFont;
-            background-color: transparent;
+        .hexaput-container {
             width: 100%;
-            text-transform: capitalize;
-            font-weight: 500;
-            outline: 0;
+        }
+
+        .static-name {
+            display: block;
+            padding: 0.25em 0;
         }
     }
 }

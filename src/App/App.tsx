@@ -5,6 +5,9 @@ import Header from './layout/Header'
 import Todo from './layout/Todo'
 import Categories from './layout/Categories'
 
+// components
+// import Hexaput from './components/common/Hexaput'
+// Hexaput
 // const w = 6
 // const h = 5.2
 
@@ -16,6 +19,7 @@ const App: FC = () => {
         <>
             <Header />
             <main>
+                {/* <Hexaput /> */}
                 <Todo />
                 {/* 
                 <svg
