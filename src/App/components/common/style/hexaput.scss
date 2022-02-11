@@ -8,6 +8,7 @@
     overflow: hidden;
     @include box(100%, max-content);
     @include f-center;
+    justify-content: flex-start;
     font: inherit;
 
     background-color: transparent;
@@ -15,7 +16,7 @@
     padding-left: $left;
 
     .hexaput {
-        width: 100%;
+        width: 97%;
         background-color: transparent;
         pointer-events: all;
         border: 0;
