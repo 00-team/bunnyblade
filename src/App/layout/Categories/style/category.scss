@@ -1,17 +1,21 @@
 @use 'mixins' as *;
 @use 'fonts' as *;
 
-.categories-container .categories .category {
+.categories-container .categories .category,
+.categories-container .categories .null-category {
     display: flex;
     flex-direction: column;
+    gap: 0.5em;
 
     padding: 0.5em;
-    background-color: #272727;
+    padding-left: 0.7em;
+
+    // background-color: #272727;
     color: #f2f2f2;
 
     .name-wrapper {
         width: 100%;
-        @include TextFont;
+        @include TextFont(20px);
         text-transform: capitalize;
         font-weight: 600;
         white-space: nowrap;
@@ -32,12 +36,58 @@
     }
 
     .todos-wrapper {
+        padding-left: 1.2em;
         ul {
             list-style: none;
+            @include TextFont;
+            text-transform: capitalize;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
 
             li {
-                background-color: red;
+                $border_height: 2px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                position: relative;
+                padding-bottom: $border_height * 3;
+
+                .toder-container {
+                    pointer-events: none;
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    height: $border_height;
+
+                    .toder {
+                        position: absolute;
+                        inset: 0;
+                        left: auto;
+                        width: 0%;
+                        transition: width 400ms;
+                        background-color: currentColor;
+                    }
+                }
+
+                span {
+                    cursor: pointer;
+
+                    &:hover ~ .toder-container .toder {
+                        left: 0;
+                        width: 100%;
+                    }
+                }
             }
         }
+    }
+}
+
+.categories-container .categories .null-category {
+    padding-top: 1em;
+
+    .todos-wrapper {
+        padding-left: 0;
     }
 }

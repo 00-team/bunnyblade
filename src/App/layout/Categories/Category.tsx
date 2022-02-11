@@ -46,7 +46,12 @@ const Category: FC<CategoryType> = props => {
             <div className='todos-wrapper'>
                 <ul>
                     {todos.map((todo, index) => (
-                        <li key={index}>{todo.name}</li>
+                        <li key={index}>
+                            <span>{todo.name}</span>
+                            <div className='toder-container'>
+                                <div className='toder' />
+                            </div>
+                        </li>
                     ))}
                 </ul>
             </div>
@@ -56,6 +61,21 @@ const Category: FC<CategoryType> = props => {
 
 export default Category
 
-const NullCategory: FC = () => {
-    return <></>
+const NullCategory: FC<CategoryType> = ({ todos }) => {
+    return (
+        <div className='null-category'>
+            <div className='todos-wrapper'>
+                <ul>
+                    {todos.map((todo, index) => (
+                        <li key={index}>
+                            <span>{todo.name}</span>
+                            <div className='toder-container'>
+                                <div className='toder' />
+                            </div>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+        </div>
+    )
 }

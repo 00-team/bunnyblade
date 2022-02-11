@@ -32,17 +32,25 @@ const CS: CategoryType[] = [
         name: 'category 1234567890 1234567890 1234567890 1234567890 ',
         checked: true,
         todos: [
-            { id: 1, name: 'todo 1', checked: true },
+            {
+                id: 1,
+                name: 'todo 1 todo 1 todo 1 todo 1 todo 1 todo 1 ',
+                checked: true,
+            },
             { id: 2, name: 'todo 2', checked: false },
             { id: 3, name: 'todo 3', checked: true },
         ],
     },
-    // {
-    //     name: 'category 2',
-    //     todos: [{ name: 'todo 1' }, { name: 'todo 2' }, { name: 'todo 3' }],
-    // },
-    // {
-    //     name: 'category 3',
-    //     todos: [{ name: 'todo 1' }, { name: 'todo 2' }, { name: 'todo 3' }],
-    // },
+    {
+        id: 2,
+        name: 'Category 2',
+        checked: false,
+        todos: [{ id: 1, name: 'todo 1', checked: false }],
+    },
+    {
+        id: 3,
+        name: null,
+        checked: true,
+        todos: [{ id: 1, name: 'todo 1', checked: false }],
+    },
 ]
