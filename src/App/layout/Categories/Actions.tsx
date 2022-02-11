@@ -7,7 +7,6 @@ interface ActionsProps {}
 
 const Actions: FC<ActionsProps> = () => {
     const [Active, setActive] = useState(false)
-    setActive
 
     return (
         <div
