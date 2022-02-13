@@ -10,7 +10,7 @@ interface HexacheckProps {
 
 const Hexacheck: FC<HexacheckProps> = ({ checked, onClick }) => {
     return (
-        <div className='hexacheck-container'>
+        <div className='hexacheck'>
             <svg viewBox='0 0 6.8 5.8'>
                 <path
                     className='main'
