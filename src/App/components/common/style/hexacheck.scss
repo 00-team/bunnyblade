@@ -2,27 +2,25 @@
 
 .hexacheck-container {
     @include box(100%);
-    @include f-center;
-    // background-color: #333;
 
     svg {
-        @include box(80%);
-        // background-color: #666;
+        @include box(100%);
+
+        * {
+            pointer-events: none;
+        }
 
         path {
-            cursor: pointer;
-            pointer-events: none;
-
-            &.borders {
-                fill: transparent;
-                stroke: #f00;
-                // fill: #ddd;
+            &.main {
                 pointer-events: all;
+                cursor: pointer;
+                fill: transparent;
+                stroke: var(--other-color);
                 stroke-width: 0.6;
             }
 
             &.barely {
-                fill: #f00;
+                fill: var(--other-color);
 
                 transform: scale(0);
                 transform-origin: center;
@@ -35,14 +33,8 @@
         }
 
         line {
-            pointer-events: none;
-            stroke: #fff;
+            stroke: var(--accent-color);
             stroke-width: 2;
-
-            &.debug {
-                stroke: #0ff;
-                stroke-width: 0.05;
-            }
         }
     }
 }

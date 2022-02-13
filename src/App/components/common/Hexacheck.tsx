@@ -1,46 +1,35 @@
-import React, { FC, useState } from 'react'
+import React, { FC } from 'react'
 
 // style
 import './style/hexacheck.scss'
 
 interface HexacheckProps {
-    checked?: true | 'barely'
+    checked?: boolean | 'barely'
+    onClick?: () => void
 }
 
-const Hexacheck: FC<HexacheckProps> = () => {
-    const [check, setCheck] = useState<boolean | 'barely'>(true)
+const Hexacheck: FC<HexacheckProps> = ({ checked, onClick }) => {
     return (
         <div className='hexacheck-container'>
             <svg viewBox='0 0 6.8 5.8'>
                 <path
-                    className='borders'
+                    className='main'
                     d='M4.9.3 1.9.3.4 2.9 1.9 5.5 4.9 5.5 6.4 2.9 4.9.3Z'
-                    onClick={
-                        () => setCheck(!check)
-                        // setCheck(check === 'barely' ? false : 'barely')
-                    }
+                    onClick={onClick}
                 />
 
                 <path
-                    className={`barely ${check === 'barely' ? 'active' : ''}`}
+                    className={`barely ${checked === 'barely' ? 'active' : ''}`}
                     d='M4.3 1.34 2.5 1.34 1.6 2.9 2.5 4.46 4.3 4.46 5.2 2.9 4.3 1.34Z'
                 />
 
-                <Checked c={check === true} />
-                {/* {DEBUGLINES} */}
+                {checked && checked !== 'barely' && <Tick />}
             </svg>
         </div>
     )
 }
 
 export default Hexacheck
-
-type C = boolean | undefined | 'barely' | 0 | 1
-const Checked: FC<{ c: C }> = ({ c }) => {
-    if (c) return <Tick />
-
-    return <></>
-}
 
 const ANIME = {
     fill: 'freeze',
@@ -99,33 +88,3 @@ const Tick: FC = () => {
         </svg>
     )
 }
-
-const h = 5.8
-const w = 6.8
-
-const DEBUGLINES = (
-    <>
-        <line
-            className='debug'
-            stroke='red'
-            x1='0'
-            y1={h / 2}
-            x2={w}
-            y2={h / 2}
-        />
-        <line
-            className='debug'
-            stroke='red'
-            x1={w / 2}
-            y1='0'
-            x2={w / 2}
-            y2={h}
-        />
-
-        <line className='debug' stroke='red' x1='0' y1='0' x2='0' y2={h} />
-        <line className='debug' stroke='red' x1='0' y1={h} x2={w} y2={h} />
-        <line className='debug' stroke='red' x1={w} y1={h} x2={w} y2='0' />
-        <line className='debug' stroke='red' x1={w} y1='0' x2='0' y2='0' />
-    </>
-)
-DEBUGLINES
