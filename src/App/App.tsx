@@ -8,6 +8,7 @@ import Categories from './layout/Categories'
 
 // components
 // import Hexaput from './components/common/Hexaput'
+// import Hexacheck from './components/common/Hexacheck'
 
 // const w = 6
 // const h = 5.2
@@ -15,12 +16,13 @@ import Categories from './layout/Categories'
 import './style/fonts/imports.scss'
 import './style/base.scss'
 
+const S = { margin: '100px' }
+S
 const App: FC = () => {
     return (
         <>
             <Header />
             <main>
-                {/* <Hexaput /> */}
                 <Todo />
                 <Categories />
                 {/* 
