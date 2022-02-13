@@ -19,11 +19,7 @@ const Actions: FC<ActionsProps> = () => {
                 <svg
                     viewBox='0 0 6 5.2'
                     key={i}
-                    style={
-                        Active
-                            ? { transitionDelay: `${i * 200}ms` }
-                            : { transitionDelay: `${i * 200}ms` }
-                    }
+                    style={{ transitionDelay: `${i * 200}ms` }}
                     className={a.className}
                 >
                     <path
