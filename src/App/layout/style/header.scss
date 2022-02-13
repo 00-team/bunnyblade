@@ -2,8 +2,7 @@
 @use 'fonts' as *;
 
 .header-container {
-    // color: var(--base-dark-white);
-    background-color: var(--header-BG);
+    background-color: var(--header-bg);
 
     .title {
         @include TitleFont(18px);
@@ -32,36 +31,20 @@
                 transform: translateY(-10px);
                 transition: transform 400ms ease, fill 200ms ease-in-out;
                 cursor: pointer;
+                fill: var(--header-actions-bg);
 
-                &.close {
-                    fill: var(--header-A-close-BG);
-                    &:hover {
-                        fill: var(--header-A-close-BG-hover);
-
-                        + path.close-icon {
-                            fill: var(--header-A-close-FG-hover);
-                        }
-                    }
+                &.close:hover {
+                    fill: var(--base-red);
                 }
 
+                &.minimize:hover {
+                    fill: var(--header-minimize-hover);
+                }
+
+                &.minimize-icon,
                 &.close-icon {
                     pointer-events: none;
-                    fill: var(--header-A-close-FG);
-                }
-
-                &.minimize {
-                    fill: var(--header-A-minimize-BG);
-                    &:hover {
-                        fill: var(--header-A-minimize-BG-hover);
-
-                        + path.minimize-icon {
-                            fill: var(--header-A-minimize-FG-hover);
-                        }
-                    }
-                }
-                &.minimize-icon {
-                    pointer-events: none;
-                    fill: var(--header-A-minimize-FG);
+                    fill: var(--accent-color);
                 }
             }
         }

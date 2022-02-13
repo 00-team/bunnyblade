@@ -1,6 +1,6 @@
 @mixin dark {
-    // BG = background
-    // FG = foreground
+    // bg = background
+    // fg = foreground
     color-scheme: dark;
 
     --primary-color: #040404;
@@ -16,21 +16,10 @@
     --base-dark-white: #d0d0d0;
 
     // header colors
-    // A == action
+    --header-bg: #101010;
+    --header-actions-bg: #222;
+    --header-minimize-hover: #333;
 
-    --header-BG: #101010;
-
-    --header-A-BG: #222;
-
-    --header-A-close-BG: var(--header-A-BG);
-    --header-A-close-FG: var(--accent-color);
-    --header-A-close-BG-hover: var(--base-red);
-    --header-A-close-FG-hover: var(--header-A-close-FG);
-
-    --header-A-minimize-BG: var(--header-A-BG);
-    --header-A-minimize-FG: var(--accent-color);
-    --header-A-minimize-BG-hover: #333;
-    --header-A-minimize-FG-hover: var(--header-A-minimize-FG);
-
+    // categories
     --categories-actions-bg: #171717;
 }
