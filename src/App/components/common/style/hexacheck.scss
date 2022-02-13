@@ -1,0 +1,48 @@
+@use 'mixins' as *;
+
+.hexacheck-container {
+    @include box(100%);
+    @include f-center;
+    // background-color: #333;
+
+    svg {
+        @include box(80%);
+        // background-color: #666;
+
+        path {
+            cursor: pointer;
+            pointer-events: none;
+
+            &.borders {
+                fill: transparent;
+                stroke: #f00;
+                // fill: #ddd;
+                pointer-events: all;
+                stroke-width: 0.6;
+            }
+
+            &.barely {
+                fill: #f00;
+
+                transform: scale(0);
+                transform-origin: center;
+                transition: transform 300ms cubic-bezier(0, 0, 0.9, 0.1);
+
+                &.active {
+                    transform: scale(1);
+                }
+            }
+        }
+
+        line {
+            pointer-events: none;
+            stroke: #fff;
+            stroke-width: 2;
+
+            &.debug {
+                stroke: #0ff;
+                stroke-width: 0.05;
+            }
+        }
+    }
+}
