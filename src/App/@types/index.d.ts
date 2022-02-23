@@ -1,5 +1,3 @@
-// context bridge prelaod
-
 interface WinType {
     close: () => void
     minimize: () => void

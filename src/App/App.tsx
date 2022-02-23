@@ -1,5 +1,7 @@
 import React, { FC } from 'react'
 
+// import {AddCategory} from '../Core/database'
+
 // layout
 import Header from './layout/Header'
 
