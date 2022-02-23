@@ -51,7 +51,6 @@
         .hexacheck {
             @include box(30px);
             flex-shrink: 0;
-            --color: #555;
             .main {
                 cursor: default;
             }

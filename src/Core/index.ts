@@ -24,6 +24,8 @@ const CreateWindow = (): BrowserWindow => {
         width: App.width,
         height: App.height,
 
+        // alwaysOnTop:true,
+
         show: false,
         maximizable: false,
         resizable: false,
