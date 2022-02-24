@@ -6,12 +6,9 @@ contextBridge.exposeInMainWorld('win', {
 })
 
 // database
+import { Category, Todo } from './Data'
 
-contextBridge.exposeInMainWorld('category', {
-    add: (title: string) => ipcRenderer.invoke('db:category:add', title),
-    get: (id: number) => ipcRenderer.invoke('db:category:get', id),
-    delete: (id: number) => ipcRenderer.invoke('db:category:delete', id),
-    all: () => ipcRenderer.invoke('db:category:all'),
-    update: (id: number, title: string) =>
-        ipcRenderer.invoke('db:category:update', id, title),
+contextBridge.exposeInMainWorld('database', {
+    Category: Category,
+    Todo: Todo,
 })
