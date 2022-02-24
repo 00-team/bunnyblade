@@ -36,4 +36,4 @@ const TABLES = TABLES_BASE.map(
         )})`
 )
 
-export { TABLES, TABLES_BASE, GetColumns }
+export { TABLES }
