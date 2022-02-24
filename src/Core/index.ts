@@ -6,7 +6,7 @@ import electronReload from 'electron-reload'
 import { resolve, APP_DIR } from './config/path'
 
 // database
-import { InitDB } from './database'
+import { InitDB } from './Data'
 
 // config
 import { DEBUG, App, APP_ICON } from './config/main'
