@@ -2,7 +2,8 @@
     "extends": "../../tsconfig.json",
     "compilerOptions": {
         "outDir": "../../dist/core/",
-        "rootDir": "./"
+        "rootDir": "./",
+        "sourceMap": false
     },
 
     "include": ["./"],
