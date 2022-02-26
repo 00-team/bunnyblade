@@ -1,25 +1,18 @@
 import React, { FC } from 'react'
 
-// import {AddCategory} from '../Core/database'
-
 // layout
 import Header from './layout/Header'
 
 import Todo from './layout/Todo'
 import Categories from './layout/Categories'
 
-// components
-// import Hexaput from './components/common/Hexaput'
-// import Hexacheck from './components/common/Hexacheck'
-
-// const w = 6
-// const h = 5.2
-
 import './style/fonts/imports.scss'
 import './style/base.scss'
 
-const S = { margin: '100px' }
-S
+// const w = 6 // 6
+// const h = 6 // 5.2
+// const S = { margin: '100px' }
+
 const App: FC = () => {
     return (
         <>
@@ -27,6 +20,7 @@ const App: FC = () => {
             <main>
                 <Todo />
                 <Categories />
+
                 {/* 
                 <svg
                     style={{ width: '100vw', height: 'calc(100vh - 28px)' }}
