@@ -1,7 +1,9 @@
-import React, { FC, useEffect, useState } from 'react'
+import React, { FC, useState } from 'react'
 
 // redux
-import { TodoModel, CategoryModel } from '../../redux/models'
+import { useDispatch } from 'react-redux'
+import { CategoryModel } from '../../redux/models'
+import { Update } from '../../redux/actions/category'
 
 // components
 import Hexaput from '../../components/common/Hexaput'
@@ -10,88 +12,81 @@ import Hexacheck from '../../components/common/Hexacheck'
 // style
 import './style/category.scss'
 
-const Category: FC<CategoryModel> = props => {
-    const { name, todos } = props
+const Category: FC<CategoryModel> = ({ id, title }) => {
+    const dispatch = useDispatch()
+    const [EditTitle, setEditTitle] = useState(false)
 
-    if (!name) {
-        return <NullCategory {...props} />
+    const Save = (NewTitle: string) => {
+        setEditTitle(false)
+        if (!NewTitle) return alert('error')
+        dispatch(Update({ id: id, title: NewTitle }))
     }
 
-    const [EditName, setEditName] = useState(false)
-    const [CategoryName, setCategoryName] = useState(name)
-    const [Checked, setChecked] = useState<boolean | 'barely'>(false)
-
-    const Save = (NewName: string) => {
-        setEditName(false)
-        if (!NewName) return alert('error')
-        setCategoryName(NewName)
-    }
-
-    useEffect(() => {
-        if (todos.every(t => t.checked)) {
-            setChecked(true)
-        } else if (todos.some(t => t.checked)) {
-            setChecked('barely')
-        }
-    }, [todos])
+    // useEffect(() => {
+    //     if (todos.every(t => t.checked)) {
+    //         setChecked(true)
+    //     } else if (todos.some(t => t.checked)) {
+    //         setChecked('barely')
+    //     }
+    // }, [todos])
 
     return (
         <div className='category'>
-            <div className={`name-wrapper ${EditName ? 'editing' : ''}`}>
-                {EditName ? (
+            <div className={`name-wrapper ${EditTitle ? 'editing' : ''}`}>
+                {EditTitle ? (
                     <Hexaput
-                        init={CategoryName}
-                        quit={() => setEditName(false)}
+                        init={title}
+                        quit={() => setEditTitle(false)}
                         onSave={n => Save(n)}
                     />
                 ) : (
                     <span
-                        onDoubleClick={() => setEditName(!EditName)}
+                        onDoubleClick={() => setEditTitle(!EditTitle)}
                         className='static-name'
                     >
-                        {CategoryName}
+                        {title}
                     </span>
                 )}
-                <Hexacheck checked={Checked} />
+                <Hexacheck checked={false} />
             </div>
-            <TodosWrapper todos={todos} />
+            {/* <TodosWrapper todos={todos} /> */}
         </div>
     )
 }
 
 export default Category
 
-const NullCategory: FC<CategoryModel> = ({ todos }) => {
-    return (
-        <div className='null-category'>
-            <TodosWrapper todos={todos} />
-        </div>
-    )
-}
+// const NullCategory: FC<CategoryModel> = ({ todos }) => {
+//     return (
+//         <div className='null-category'>
+//             <TodosWrapper todos={todos} />
+//         </div>
+//     )
+// }
 
-const TodosWrapper: FC<{ todos: TodoModel[] }> = ({ todos }) => {
-    return (
-        <div className='todos-wrapper'>
-            <ul>
-                {todos.map((todo, index) => (
-                    <TodoItem {...todo} key={index} />
-                ))}
-            </ul>
-        </div>
-    )
-}
+// const TodosWrapper: FC<{ todos: TodoModel[] }> = ({ todos }) => {
+//     return (
+//         <div className='todos-wrapper'>
+//             <ul>
+//                 {todos.map((todo, index) => (
+//                     <TodoItem {...todo} key={index} />
+//                 ))}
+//             </ul>
+//         </div>
+//     )
+// }
 
-const TodoItem: FC<TodoModel> = ({ name, checked }) => {
-    const [Checked, setChecked] = useState(checked)
+// const TodoItem: FC<TodoModel> = ({ name, checked }) => {
+//     const [Checked, setChecked] = useState(checked)
 
-    return (
-        <li>
-            <span>{name}</span>
-            <Hexacheck checked={Checked} onClick={() => setChecked(!Checked)} />
+//     return (
+//         <li>
+//             <span>{name}</span>
+//             <Hexacheck checked={Checked} onClick={() => setChecked(!Checked)} />
 
-            <div className='toder-container'>
-                <div className='toder' />
-            </div>
-        </li>
-    )
-}
+//             <div className='toder-container'>
+//                 <div className='toder' />
+//             </div>
+//         </li>
+//     )
+// }
