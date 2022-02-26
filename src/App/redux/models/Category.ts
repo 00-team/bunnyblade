@@ -1,21 +1,15 @@
-interface TodoModel {
-    id: number
-    name: string
-    checked: boolean
-}
-
 interface CategoryModel {
     id: number
-    name: string | null
-    checked: boolean
-    todos: TodoModel[]
+    title: string
 }
 
-export { TodoModel, CategoryModel }
+export { CategoryModel }
 
 enum CategoryTypes {
     SET_CATEGORIES = 'SET_CATEGORIES',
-    SET_TODO = 'SET_TODO',
+    UPDATE_CATEGORY = 'UPDATE_CATEGORY',
 }
 
-export { CategoryTypes }
+type State = CategoryModel[]
+
+export { CategoryTypes, State }
