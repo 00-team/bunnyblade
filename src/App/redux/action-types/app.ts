@@ -1,4 +1,4 @@
-import { AppTypes } from '../models'
+import { AppTypes } from '../models/App'
 
 interface SET_TITLE {
     type: AppTypes.SET_TITLE

@@ -1,5 +1,5 @@
 import { Action } from '../action-types/app'
-import { App, AppTypes, DefaultAppState } from '../models'
+import { App, AppTypes, DefaultAppState } from '../models/App'
 
 const App = (state: App = DefaultAppState, action: Action): App => {
     switch (action.type) {
