@@ -1,3 +1,4 @@
+import { ipcMain } from 'electron'
 // sqlite
 import sqlite3 from 'sqlite3'
 import { Database, open as open_db } from 'sqlite'
@@ -87,11 +88,10 @@ interface C_UPDATE {
     id: number
     title: string
 }
-export { C_ADD, C_UPDATE }
 
-type C = (
-    props: BASE_PROPS | C_ADD | C_UPDATE
-) => Promise<ReturnType<CategoryModel>>
+type CProps = BASE_PROPS | C_ADD | C_UPDATE
+
+type C = (props: CProps) => Promise<ReturnType<CategoryModel>>
 const Category: C = async props => {
     const db = await GetDB()
     const GetRow = GetRowSetup('category', db)
@@ -131,9 +131,9 @@ interface T_UPDATE {
     description?: string
 }
 
-type T = (
-    props: BASE_PROPS | T_ADD | T_UPDATE
-) => Promise<ReturnType<TodoModel>>
+type TProps = BASE_PROPS | T_ADD | T_UPDATE
+
+type T = (props: TProps) => Promise<ReturnType<TodoModel>>
 const Todo: T = async props => {
     const db = await GetDB()
     const GetRow = GetRowSetup('todo', db)
@@ -172,3 +172,11 @@ const Todo: T = async props => {
 }
 
 export { Category, Todo }
+
+ipcMain.handle('db:category', (_, props: CProps) => {
+    return Category(props)
+})
+
+ipcMain.handle('db:todo', (_, props: TProps) => {
+    return Todo(props)
+})
