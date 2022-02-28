@@ -1,18 +1,16 @@
-import { app, BrowserWindow, Menu, nativeImage, Tray } from 'electron'
+import { app, session } from 'electron'
+import { BrowserWindow, Menu, nativeImage, Tray } from 'electron'
 import { ipcMain } from 'electron'
-import electronReload from 'electron-reload'
 
 // paths
-import { resolve, APP_DIR } from './config/path'
+import { resolve } from './config/path'
+import { DEV_THEME, REACT_EXT } from './config/path'
 
 // database
 import { InitDB } from './Data'
 
 // config
 import { DEBUG, App, APP_ICON } from './config/main'
-
-// debug setup
-if (DEBUG) electronReload(APP_DIR, {})
 
 // global variables
 var TaryMenu: Tray | null = null
@@ -42,8 +40,7 @@ const CreateWindow = (): BrowserWindow => {
             preload: resolve(__dirname, 'preload.js'),
         },
     })
-
-    win.loadFile(resolve(APP_DIR, 'index.html'))
+    win.loadURL('http://localhost:8000')
 
     win.once('ready-to-show', () => {
         win.show()
@@ -121,6 +118,8 @@ const CreateTray = (win: BrowserWindow) => {
 }
 
 app.whenReady().then(async () => {
+    await session.defaultSession.loadExtension(DEV_THEME)
+    await session.defaultSession.loadExtension(REACT_EXT)
     await InitDB()
 
     const win = CreateWindow()
@@ -132,5 +131,5 @@ app.whenReady().then(async () => {
 })
 
 // app.commandLine.appendSwitch('ignore-certificate-errors')
-// process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0'
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = 'false'
 process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = 'true'
