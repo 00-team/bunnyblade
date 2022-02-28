@@ -10,7 +10,8 @@ interface HexaputProps {
     quit?: () => void
 }
 
-const Hexaput: FC<HexaputProps> = ({ init, onChange, onSave, quit }) => {
+const Hexaput: FC<HexaputProps> = props => {
+    const { init, onChange, onSave, quit } = props
     const [Active, setActive] = useState(false)
     const [InputValue, setInputValue] = useState(init || '')
 
