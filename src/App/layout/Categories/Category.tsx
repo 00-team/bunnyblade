@@ -51,19 +51,13 @@ const Category: FC<CategoryProps> = ({ id, title, index }) => {
 
     return (
         <div className='category-container'>
-            <div
-                className={
-                    'category' +
-                    C(SCState.active, 'show-select') +
-                    C(EditTitle, 'editing')
-                }
-            >
+            <div className={'category' + C(SCState.active, 'show-select')}>
                 <div className={'bborder' + C(Selected, 'active')}>
                     <div />
                     <div />
                 </div>
 
-                <div className={'edit-border' + C(EditTitle, 'active')}>
+                <div className='edit-border'>
                     <Transition
                         in={EditTitle}
                         timeout={!EditTitle ? 5 * 300 : 0}

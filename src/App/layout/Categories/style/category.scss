@@ -62,7 +62,7 @@
 
         .edit-border {
             div {
-                transition: transform 300ms cubic-bezier(0.7, 0, 0.4, 1);
+                transition: transform 400ms cubic-bezier(0.7, 0, 0.4, 1);
                 width: 100%;
                 background-color: var(--base-pink);
             }
@@ -71,7 +71,6 @@
         .title-wrapper {
             width: 100%;
             @include TextFont(20px);
-            text-transform: capitalize;
             font-weight: 600;
             white-space: nowrap;
             overflow: hidden;
@@ -117,7 +116,6 @@
             ul {
                 list-style: none;
                 @include TextFont;
-                text-transform: capitalize;
                 display: flex;
                 flex-direction: column;
                 gap: 0.5em;
@@ -177,10 +175,6 @@
         &.show-select .select {
             width: 24px;
         }
-
-        // &.editing .bborder {
-        //     left: 100%;
-        // }
     }
 }
 
