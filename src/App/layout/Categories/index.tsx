@@ -24,7 +24,7 @@ const Categories: FC = () => {
         <div className='categories-container'>
             <div className='categories'>
                 {CategoryState.map((c, index) => (
-                    <Category {...c} key={index} />
+                    <Category {...c} key={index} index={index} />
                 ))}
             </div>
 
@@ -34,41 +34,3 @@ const Categories: FC = () => {
 }
 
 export default Categories
-
-// const CS: CategoryModel[] = [
-//     {
-//         id: 1,
-//         name: 'category 1234567890 1234567890 1234567890 1234567890 ',
-//         // checked: true,
-//         // todos: [
-//         //     {
-//         //         id: 1,
-//         //         name: 'todo 1 todo 1 todo 1 todo 1 todo 1 todo 1 ',
-//         //         checked: true,
-//         //     },
-//         //     { id: 2, name: 'todo 2', checked: true },
-//         //     { id: 3, name: 'todo 3', checked: true },
-//         //     { id: 4, name: 'todo 4', checked: true },
-//         //     { id: 5, name: 'todo 5', checked: true },
-//         // ],
-//     },
-//     {
-//         id: 2,
-//         name: 'Category 2',
-//         // checked: false,
-//         // todos: [
-//         //     { id: 1, name: 'todo 1', checked: false },
-//         //     { id: 2, name: 'todo 2', checked: true },
-//         //     { id: 3, name: 'todo 3', checked: false },
-//         // ],
-//     },
-//     {
-//         id: 3,
-//         name: 'gg',
-//         // checked: true,
-//         // todos: [
-//         //     { id: 1, name: 'todo 1', checked: true },
-//         //     { id: 2, name: 'todo 2', checked: false },
-//         // ],
-//     },
-// ]

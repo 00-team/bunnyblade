@@ -1,123 +1,186 @@
 @use 'mixins' as *;
 @use 'fonts' as *;
 
-.categories-container .categories .category,
-.categories-container .categories .null-category {
+.categories-container .categories .category-container {
     display: flex;
     flex-direction: column;
     gap: 0.5em;
-
     padding: 0.5em;
-    padding-left: 0.7em;
-
+    // padding-left: 0.7em;
     color: var(--accent-color);
 
-    .name-wrapper {
-        width: 100%;
-        @include TextFont(20px);
-        text-transform: capitalize;
-        font-weight: 600;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-
-        user-select: none;
-        // justify-content: center;
-
+    .category {
         display: flex;
-        justify-content: space-between;
         align-items: center;
         gap: 0.5em;
-
-        border-bottom: 1px solid var(--other-color);
+        cursor: pointer;
+        position: relative;
         padding-bottom: 0.2em;
+        overflow: hidden;
 
-        &.editing {
-            border-color: transparent;
+        .select {
+            flex-shrink: 0;
+            @include f-center;
+            @include box(24px);
+            width: 0px;
+            transition: width 70ms linear;
+            --overlay: var(--other-color);
         }
 
-        .hexaput-container {
+        .bborder,
+        .edit-border {
+            position: absolute;
+            height: 1px;
             width: 100%;
+            display: flex;
+            justify-content: space-between;
+            bottom: 0;
+            left: 0;
+            overflow: hidden;
         }
 
-        .static-name {
+        .bborder {
+            background-color: var(--other-color);
+            transition: left 300ms ease;
+
+            div {
+                width: 50%;
+                height: 100%;
+                background-color: var(--base-dark-white);
+                transform: translateX(-110%);
+                transition: transform 400ms ease;
+
+                &:last-child {
+                    transform: translateX(110%);
+                }
+            }
+
+            &.active div {
+                transform: translateX(0);
+            }
+        }
+
+        .edit-border {
+            div {
+                transition: transform 300ms cubic-bezier(0.7, 0, 0.4, 1);
+                width: 100%;
+                background-color: var(--base-pink);
+            }
+        }
+
+        .title-wrapper {
+            width: 100%;
+            @include TextFont(20px);
+            text-transform: capitalize;
+            font-weight: 600;
+            white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            display: block;
-            padding: 0.25em 0;
-            cursor: pointer;
-        }
 
-        .hexacheck {
-            @include box(30px);
-            flex-shrink: 0;
-            .main {
-                cursor: default;
-            }
-        }
-    }
+            user-select: none;
 
-    .todos-wrapper {
-        padding-left: 1.2em;
-        user-select: none;
-        ul {
-            list-style: none;
-            @include TextFont;
-            text-transform: capitalize;
             display: flex;
-            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
             gap: 0.5em;
+            padding: 0.25em 0;
 
-            li {
-                $border_height: 2px;
-                white-space: nowrap;
+            .title-input {
+                @include box(100%, max-content);
+                background-color: transparent;
+                font: inherit;
+                border: 0;
+                outline: 0;
+
+                &:focus {
+                    outline: 0;
+                    border: 0;
+                }
+            }
+
+            .static-title {
                 overflow: hidden;
                 text-overflow: ellipsis;
-                position: relative;
-                padding-bottom: $border_height * 3;
+                display: block;
+                cursor: pointer;
+            }
+        }
 
+        .checked {
+            @include box(30px);
+            flex-shrink: 0;
+        }
+
+        .todos-wrapper {
+            padding-left: 1.2em;
+            user-select: none;
+            ul {
+                list-style: none;
+                @include TextFont;
+                text-transform: capitalize;
                 display: flex;
-                overflow: hidden;
-                justify-content: space-between;
-                align-items: center;
+                flex-direction: column;
                 gap: 0.5em;
 
-                span {
-                    cursor: pointer;
-                    width: 100%;
+                li {
+                    $border_height: 2px;
+                    white-space: nowrap;
                     overflow: hidden;
                     text-overflow: ellipsis;
-                }
+                    position: relative;
+                    padding-bottom: $border_height * 3;
 
-                .hexacheck {
-                    @include box(30px);
-                    flex-shrink: 0;
-                }
+                    display: flex;
+                    overflow: hidden;
+                    justify-content: space-between;
+                    align-items: center;
+                    gap: 0.5em;
 
-                .toder-container {
-                    pointer-events: none;
-                    position: absolute;
-                    bottom: 0;
-                    left: 0;
-                    right: 0;
-                    height: $border_height;
-
-                    .toder {
-                        position: absolute;
-                        inset: 0;
-                        left: auto;
-                        width: 0%;
-                        transition: width 400ms;
-                        background-color: currentColor;
+                    span {
+                        cursor: pointer;
+                        width: 100%;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
                     }
-                }
 
-                &:hover .toder-container .toder {
-                    left: 0;
-                    width: 100%;
+                    .hexacheck {
+                        @include box(30px);
+                        flex-shrink: 0;
+                    }
+
+                    .toder-container {
+                        pointer-events: none;
+                        position: absolute;
+                        bottom: 0;
+                        left: 0;
+                        right: 0;
+                        height: $border_height;
+
+                        .toder {
+                            position: absolute;
+                            inset: 0;
+                            left: auto;
+                            width: 0%;
+                            transition: width 400ms;
+                            background-color: currentColor;
+                        }
+                    }
+
+                    &:hover .toder-container .toder {
+                        left: 0;
+                        width: 100%;
+                    }
                 }
             }
         }
+
+        &.show-select .select {
+            width: 24px;
+        }
+
+        // &.editing .bborder {
+        //     left: 100%;
+        // }
     }
 }
 
