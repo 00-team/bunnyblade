@@ -23,7 +23,7 @@
         font: inherit;
         user-select: auto;
         padding-left: 0.2em;
-        padding-block: 0.1em + $border-height;
+        padding-block: calc(0.1em + $border-height);
         color: currentColor;
         outline: 0;
     }

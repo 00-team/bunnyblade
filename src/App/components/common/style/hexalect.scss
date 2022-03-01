@@ -1,0 +1,39 @@
+@use 'mixins' as *;
+
+.hexalect {
+    @include box(100%);
+
+    svg {
+        @include box(100%);
+
+        * {
+            pointer-events: none;
+        }
+
+        path {
+            &.main {
+                pointer-events: all;
+                cursor: pointer;
+                fill: transparent;
+                stroke: var(--color, var(--other-color));
+                stroke-width: 0.6;
+            }
+
+            &.overlay {
+                fill: transparent;
+                stroke: var(--overlay);
+                stroke-width: 0;
+                transition: stroke-width 200ms ease;
+            }
+        }
+
+        line {
+            stroke: var(--tick-color, var(--accent-color));
+            stroke-width: 2;
+        }
+    }
+
+    &.selected svg path.overlay {
+        stroke-width: 7;
+    }
+}
