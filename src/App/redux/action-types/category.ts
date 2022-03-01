@@ -1,13 +1,17 @@
-import { CategoryTypes, State, CategoryModel } from '../models/Category'
+import { CategoryTypes, State } from '../models/Category'
 
-interface SET_CATEGORIES {
+export interface Action {
     type: CategoryTypes.SET_CATEGORIES
     payload: State
 }
 
-interface UPDATE_CATEGORY {
-    type: CategoryTypes.UPDATE_CATEGORY
-    payload: CategoryModel
+interface TOGGLE_SELECT {
+    type: CategoryTypes.TOGGLE_SELECT
 }
 
-export type Action = SET_CATEGORIES | UPDATE_CATEGORY
+interface TOGGLE_SELECTED {
+    type: CategoryTypes.TOGGLE_SELECTED
+    payload: number
+}
+
+export type SelectAction = TOGGLE_SELECT | TOGGLE_SELECTED

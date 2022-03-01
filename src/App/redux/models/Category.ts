@@ -3,13 +3,24 @@ interface CategoryModel {
     title: string
 }
 
-export { CategoryModel }
+interface SelectCategoryModel {
+    active: boolean
+    categories: number[]
+}
+
+export { CategoryModel, SelectCategoryModel }
 
 enum CategoryTypes {
     SET_CATEGORIES = 'SET_CATEGORIES',
-    UPDATE_CATEGORY = 'UPDATE_CATEGORY',
+    TOGGLE_SELECT = 'TOGGLE_SELECT_CATEGORY',
+    TOGGLE_SELECTED = 'TOGGLE_SELECTED_CATEGORY',
 }
 
 type State = CategoryModel[]
 
-export { CategoryTypes, State }
+const DefaultSState: SelectCategoryModel = {
+    active: false,
+    categories: [],
+}
+
+export { CategoryTypes, State, DefaultSState }
