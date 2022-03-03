@@ -1,6 +1,19 @@
-.__hexafirm__ {
+@use 'mixins' as *;
+
+#__hexafirm__ {
     position: fixed;
-    background-color: #fff2;
     inset: 0;
+    top: 30px;
+
     pointer-events: none;
+    @include f-center;
+    justify-content: flex-start;
+
+    .main {
+        background-color: #fff2;
+        pointer-events: all;
+        @include box(calc(100% - 300px), 100%);
+        @include f-center;
+        position: absolute;
+    }
 }
