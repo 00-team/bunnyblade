@@ -10,8 +10,8 @@ import { Update } from '../../redux/actions/category'
 
 // components
 import Input from '../../components/common/Input'
-import Hexacheck from '../../components/common/Hexacheck'
-import Hexalect from '../../components/common/Hexalect'
+import Hexacheck from '../../components/Hexa/Hexacheck'
+import Hexalect from '../../components/Hexa/Hexalect'
 
 // utils
 import { C } from '@00-team/utils'
