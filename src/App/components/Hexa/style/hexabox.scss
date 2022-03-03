@@ -1,0 +1,195 @@
+@use 'mixins' as *;
+@use 'fonts' as *;
+
+.hexabox {
+    overflow: hidden;
+    position: relative;
+    // resize: both;
+    min-width: 100px;
+    min-height: 100px;
+    contain: layout;
+
+    * {
+        pointer-events: none;
+    }
+
+    .triangle {
+        @include box(var(--ratio), 100%);
+        shape-margin: 1px;
+
+        &:nth-child(1) {
+            float: right;
+            shape-outside: polygon(0 0, 100% 0, 100% var(--ratio));
+        }
+
+        &:nth-child(2) {
+            float: left;
+            shape-outside: polygon(0 var(--h-ratio), 0 100%, 100% 100%);
+        }
+    }
+
+    .content {
+        pointer-events: all;
+        padding: 20px;
+
+        word-break: break-all;
+        height: 100%;
+        @include TextFont(30px);
+    }
+
+    .borders {
+        $main_dur: 700ms;
+        $triangle_dur: 400ms;
+        $timing: ease-in-out;
+        $shadow: 0 0 14px 4px #000;
+
+        div {
+            position: absolute;
+            z-index: 1;
+            background-color: var(--other-color);
+
+            &::after {
+                content: '';
+                position: absolute;
+                background-color: var(--base-dark-white);
+                left: 0;
+                top: 0;
+            }
+        }
+
+        .top,
+        .bottom {
+            width: calc(100% - var(--ratio));
+            height: 1px;
+            display: flex;
+            justify-content: center;
+
+            &::before {
+                content: '';
+                height: 100%;
+                position: absolute;
+                width: 98%;
+                box-shadow: $shadow;
+            }
+
+            &::after {
+                height: 100%;
+                animation: width $main_dur $timing both;
+            }
+        }
+
+        .top {
+            left: 0;
+            top: 0;
+        }
+
+        .bottom {
+            right: 0;
+            bottom: 0;
+
+            &::after {
+                animation-delay: $main_dur + $triangle_dur;
+            }
+        }
+
+        .left,
+        .right {
+            height: calc(100% - var(--ratio));
+            width: 1px;
+            display: flex;
+            align-items: center;
+
+            &::before {
+                content: '';
+                height: 95%;
+                position: absolute;
+                width: 100%;
+                box-shadow: $shadow;
+            }
+
+            &::after {
+                width: 100%;
+                animation: height $main_dur $timing both;
+            }
+        }
+
+        .left {
+            top: 0;
+            left: 0;
+        }
+
+        .right {
+            bottom: 0;
+            right: 0;
+
+            &::after {
+                animation-delay: $main_dur + $triangle_dur;
+            }
+        }
+
+        .top-right-con,
+        .bottom-left-con {
+            background-color: transparent;
+            width: var(--hypotenuse);
+            height: 30px;
+            transform: rotate(45deg);
+            overflow: hidden;
+
+            div {
+                width: 100%;
+                height: 1.3px;
+
+                box-shadow: $shadow;
+
+                &::after {
+                    height: 100%;
+                    animation: width $triangle_dur $main_dur $timing both;
+                }
+            }
+        }
+
+        .top-right-con {
+            left: calc(100% - var(--ratio));
+            top: 0;
+            transform-origin: left top;
+        }
+
+        .bottom-left-con {
+            left: 0;
+            transform-origin: left bottom;
+            bottom: var(--ratio);
+
+            div {
+                bottom: 0;
+            }
+        }
+
+        @keyframes width {
+            from {
+                width: 0%;
+            }
+            to {
+                width: 100%;
+            }
+        }
+
+        @keyframes height {
+            from {
+                height: 0%;
+            }
+            to {
+                height: 100%;
+            }
+        }
+    }
+
+    .bg {
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+
+        path {
+            fill: #111;
+        }
+    }
+}
