@@ -75,6 +75,7 @@
             &::after {
                 height: 100%;
                 animation: width $main_dur $timing both;
+                animation-delay: var(--hexabox-borders-delay);
             }
         }
 
@@ -88,7 +89,9 @@
             bottom: 0;
 
             &::after {
-                animation-delay: $main_dur + $triangle_dur;
+                animation-delay: calc(
+                    $main_dur + $triangle_dur + var(--hexabox-borders-delay)
+                );
             }
         }
 
@@ -110,6 +113,7 @@
             &::after {
                 width: 100%;
                 animation: height $main_dur $timing both;
+                animation-delay: var(--hexabox-borders-delay);
             }
         }
 
@@ -123,7 +127,9 @@
             right: 0;
 
             &::after {
-                animation-delay: $main_dur + $triangle_dur;
+                animation-delay: calc(
+                    $main_dur + $triangle_dur + var(--hexabox-borders-delay)
+                );
             }
         }
 
@@ -143,7 +149,10 @@
 
                 &::after {
                     height: 100%;
-                    animation: width $triangle_dur $main_dur $timing both;
+                    animation: width $triangle_dur $timing both;
+                    animation-delay: calc(
+                        $main_dur + var(--hexabox-borders-delay)
+                    );
                 }
             }
         }
