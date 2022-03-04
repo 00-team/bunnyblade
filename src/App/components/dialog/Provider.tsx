@@ -2,11 +2,7 @@ import React, { FC, createContext } from 'react'
 import { useCallback, useContext, useState } from 'react'
 import { createPortal } from 'react-dom'
 
-useCallback
-useState
-
-// style
-import './style/dialog.scss'
+import Dialog from './Dialog'
 
 type content = JSX.Element | string | null
 
@@ -35,10 +31,7 @@ const Provider: FC<ProviderProps> = ({ children, root = '__dialog__' }) => {
     return (
         <DialogContext.Provider value={{ setContent: cb }}>
             {children}
-            {createPortal(
-                content && <div className='main'>{content}</div>,
-                RootElement
-            )}
+            {createPortal(<Dialog children={content} />, RootElement)}
         </DialogContext.Provider>
     )
 }

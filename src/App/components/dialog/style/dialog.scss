@@ -1,19 +1,93 @@
 @use 'mixins' as *;
 
-#__dialog__ {
+#__dialog__ .dialog-container {
     position: fixed;
-    inset: 0;
-    top: 30px;
+    inset: 30px 300px 0 0;
 
-    pointer-events: none;
     @include f-center;
-    justify-content: flex-start;
+    contain: layout;
+    overflow: hidden;
 
-    .main {
-        background-color: #fff2;
-        pointer-events: all;
-        @include box(calc(100% - 300px), 100%);
-        @include f-center;
+    .dialog-bg {
         position: absolute;
+        width: 1454px;
+        height: 1px;
+        @include f-center;
+        justify-content: flex-start;
+        transform-origin: center;
+        transform: rotate(28.327deg);
+        z-index: -10;
+
+        &::after {
+            content: '';
+            position: absolute;
+            width: 10%;
+            height: 0px;
+
+            background-color: #0007;
+            backdrop-filter: blur(4px);
+            border: 2px solid #fff;
+            border-inline: 0;
+            animation: dialog-bg-anime 1.7s both;
+            animation-timing-function: cubic-bezier(0.7, 0, 0.4, 1);
+        }
+
+        @keyframes dialog-bg-anime {
+            0% {
+                width: 0%;
+                height: 0px;
+            }
+
+            50% {
+                width: 100%;
+                height: 0px;
+            }
+            55% {
+                width: 100%;
+                height: 0px;
+            }
+
+            100% {
+                width: 100%;
+                height: 1400px;
+            }
+        }
+    }
+
+    .dialog-wrapper {
+        overflow: hidden;
+        padding-bottom: 10px;
+
+        .dialog {
+            overflow: hidden;
+            animation: show 0.6s 1.6s both;
+            animation-timing-function: cubic-bezier(0, 0.5, 0.2, 1);
+            @include f-center;
+
+            @keyframes show {
+                from {
+                    transform: translateY(calc(100% + 10px));
+                }
+                to {
+                    transform: translateY(0);
+                }
+            }
+
+            &.hide {
+                animation: show 0.6s 1.6s both;
+                animation-play-state: running;
+            }
+
+            @keyframes hide {
+                from {
+                    transform: translateY(0);
+                }
+                to {
+                    transform: translateY(calc(100% + 10px));
+                }
+            }
+
+            --hexabox-borders-delay: 2.2s;
+        }
     }
 }
