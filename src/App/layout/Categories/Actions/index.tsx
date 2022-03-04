@@ -1,12 +1,18 @@
-import React, { FC, useState } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 
 // redux
-import { useDispatch } from 'react-redux'
-import { Add } from '../../redux/actions/category'
-import { CategoryTypes } from '../../redux/models/Category'
+import { useDispatch, useSelector } from 'react-redux'
+import { Add } from 'api/actions/category'
+import { CategoryTypes } from 'api/models/Category'
+import { RootState } from 'api'
+
+// dialog
+import { useDialog } from '../../../components/dialog'
+import DeleteDialog from './DeleteDialog'
 
 // style
 import './style/actions.scss'
+import { C } from '@00-team/utils'
 
 interface ActionsProps {}
 
@@ -18,7 +24,21 @@ interface ActionSvg {
 
 const Actions: FC<ActionsProps> = () => {
     const dispatch = useDispatch()
-    const [Active, setActive] = useState(false)
+    const Selected = useSelector((s: RootState) => s.SelectCategory)
+    const dialog = useDialog()
+
+    useEffect(() => {
+        dialog.setContent(<DeleteDialog />)
+    }, [])
+
+    // A = active
+    // S = Stay Active
+    const [Active, setActive] = useState({ A: false, S: false })
+
+    useEffect(() => {
+        if (Selected.active) setActive({ A: true, S: true })
+        else setActive({ ...Active, S: false })
+    }, [Selected])
 
     const ActionsData: ActionSvg[] = [
         {
@@ -33,7 +53,9 @@ const Actions: FC<ActionsProps> = () => {
         },
         {
             className: 'unmark',
-            onClick: () => {},
+            onClick: () => {
+                dialog.setContent(null)
+            },
             icon: 'M1.61 1.16A.46.46 90 012.07.7H3.91A.46.46 90 014.37 1.16V4.26A.11.11 90 014.19 4.36L2.99 3.71 1.79 4.36A.11.11 90 011.61 4.26V1.16ZM2.07.93A.23.23 90 001.84 1.16V4.05L2.93 3.48A.11.11 90 013.05 3.48L4.14 4.05V1.16A.23.23 90 003.91.93H2.07ZM2.375 1.925A.125.125 90 012.5 1.8H3.5A.125.125 90 013.5 2.05H2.5A.125.125 90 012.375 1.925Z',
         },
         {
@@ -43,18 +65,26 @@ const Actions: FC<ActionsProps> = () => {
         },
         {
             className: 'delete',
-            onClick: () => {},
+            onClick: () => {
+                dialog.setContent(<DeleteDialog />)
+                // if (hexafirm) hexafirm.cb('gggggg')
+                // Selected.categories.forEach(c => dispatch(Delete(c)))
+                // dispatch({ type: CategoryTypes.TOGGLE_SELECT })
+                // dispatch({ type: CategoryTypes.TOGGLE_SELECT })
+            },
             icon: 'M2.4352 1.2624V1.2624H3.5296 3.5296V1.5216H3.7888V1.2336C3.7888 1.1065 3.6855 1.0032 3.5584 1.0032H2.4064C2.2793 1.0032 2.176 1.1065 2.176 1.2336V1.5216H2.4352V1.2624ZM4.2496 1.5216H1.7152C1.6515 1.5216 1.6 1.5731 1.6 1.6368V1.6C1.6 1.7678 1.613 1.7808 1.6288 1.7808H1.8462L1.9352 3.6636C1.9409 3.7864 2.0424 3.8832 2.1652 3.8832H3.7996C3.9227 3.8832 4.0239 3.7867 4.0296 3.6636L4.1186 1.7808H4.336C4.3518 1.7808 4.3648 1.7678 4.3648 1.752V1.6368C4.3648 1.5731 4.3133 1.5216 4.2496 1.5216ZM3.7719 3.624H2.1929L2.1058 1.7808H3.859L3.7719 3.624Z',
         },
     ]
 
     return (
         <div
-            className={`actions-container ${Active ? ' active' : ''}`}
-            onMouseEnter={() => setActive(true)}
-            onMouseLeave={() => setActive(false)}
-            style={!Active ? { transitionDelay: '1250ms' } : {}}
+            className={'actions-container' + C(Active.A, 'active')}
+            onMouseEnter={() => setActive({ ...Active, A: true })}
+            onMouseLeave={() => !Active.S && setActive({ A: false, S: false })}
+            style={!Active.A ? { transitionDelay: '1250ms' } : {}}
         >
+            {/* <Hexafirm>gg</Hexafirm>
+            <Hexafirm>g2</Hexafirm> */}
             {ActionsData.map((a, i) => (
                 <svg
                     viewBox='0 0 6 5.2'
