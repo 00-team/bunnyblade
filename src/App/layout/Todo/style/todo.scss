@@ -1,10 +1,12 @@
 .todo-container {
     width: 100%;
     // background-color: red;
+    overflow: hidden;
     height: 100%;
-    font-size: 100px;
+    font-size: 50px;
     text-align: center;
     display: flex;
+    // word-break: break-all;
     justify-content: center;
     align-items: center;
     font-family: 'Maven Pro';
