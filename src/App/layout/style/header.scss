@@ -2,6 +2,8 @@
 @use 'fonts' as *;
 
 .header-container {
+    height: 30px;
+    flex-shrink: 0;
     background-color: var(--header-bg);
 
     .title {
