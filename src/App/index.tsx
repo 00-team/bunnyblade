@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import { render } from 'react-dom'
 
-import Hexafirm from './components/Hexa/Hexafirm'
+import { DialogProvider } from './components/dialog'
 
 // redux
 import { Provider as Redux } from 'react-redux'
@@ -9,14 +9,14 @@ import { Provider as Redux } from 'react-redux'
 // App
 import App from './App'
 
-import { store } from './redux'
+import { store } from 'api'
 
 const Root: FC = () => {
     return (
         <Redux store={store}>
-            <Hexafirm>
+            <DialogProvider>
                 <App />
-            </Hexafirm>
+            </DialogProvider>
         </Redux>
     )
 }

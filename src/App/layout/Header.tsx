@@ -2,7 +2,7 @@ import React, { CSSProperties, FC, useEffect, useState } from 'react'
 
 // redux
 import { useSelector } from 'react-redux'
-import { RootState } from '../redux'
+import { RootState } from 'api'
 
 // style
 import './style/header.scss'
