@@ -3,6 +3,11 @@
     "compilerOptions": {
         "outDir": "../../dist/app/",
         "rootDir": "./",
+        "baseUrl": "./",
+        "paths": {
+            "~comps/*": ["components/*"],
+            "~Hexa/*": ["components/Hexa/*"]
+        },
         "typeRoots": ["@types"]
     },
 
