@@ -47,7 +47,7 @@ const Base: Configuration = {
         alias: {
             '~comps': resolve(APP_DIR, 'components'),
             '~Hexa': resolve(APP_DIR, 'components/Hexa'),
-            api: resolve(APP_DIR, 'api'),
+            state: resolve(APP_DIR, 'state'),
         },
     },
     devtool: 'source-map',

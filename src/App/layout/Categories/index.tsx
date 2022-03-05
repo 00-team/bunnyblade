@@ -2,8 +2,8 @@ import React, { FC, useEffect } from 'react'
 
 // redux
 import { useSelector, useDispatch } from 'react-redux'
-import { RootState } from 'api'
-import { GetAll } from 'api/actions/category'
+import { RootState } from 'state'
+import { GetAll } from 'state/actions/category'
 
 // components
 import Actions from './Actions'

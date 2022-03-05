@@ -2,9 +2,9 @@ import React, { FC, useEffect, useState } from 'react'
 
 // redux
 import { useDispatch, useSelector } from 'react-redux'
-import { Add } from 'api/actions/category'
-import { CategoryTypes } from 'api/models/Category'
-import { RootState } from 'api'
+import { Add } from 'state/actions/category'
+import { CategoryTypes } from 'state/models/Category'
+import { RootState } from 'state'
 
 // dialog
 import { useDialog } from '../../../components/dialog'

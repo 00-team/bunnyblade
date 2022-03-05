@@ -9,7 +9,7 @@ import { Provider as Redux } from 'react-redux'
 // App
 import App from './App'
 
-import { store } from 'api'
+import { store } from 'state'
 
 const Root: FC = () => {
     return (

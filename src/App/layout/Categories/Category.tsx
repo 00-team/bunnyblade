@@ -4,9 +4,9 @@ import { Transition, TransitionStatus } from 'react-transition-group'
 
 // redux
 import { useDispatch, useSelector } from 'react-redux'
-import { RootState } from 'api'
-import { CategoryModel, CategoryTypes } from 'api/models/Category'
-import { Update } from 'api/actions/category'
+import { RootState } from 'state'
+import { CategoryModel, CategoryTypes } from 'state/models/Category'
+import { Update } from 'state/actions/category'
 
 // components
 import Input from '../../components/common/Input'
