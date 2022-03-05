@@ -192,13 +192,24 @@
         }
     }
 
-    .bg {
+    .box-bg-con {
         position: absolute;
         inset: 0;
         z-index: -1;
 
-        path {
+        .box-bg {
             fill: #111;
+        }
+    }
+
+    .box-hovering {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+
+        path {
+            fill: transparent;
+            pointer-events: initial;
         }
     }
 }
