@@ -31,10 +31,8 @@
     .content {
         pointer-events: all;
         padding: 20px;
-
         word-break: break-all;
         height: 100%;
-        @include TextFont(30px);
     }
 
     .borders {
