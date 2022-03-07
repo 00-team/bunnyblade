@@ -29,8 +29,6 @@ interface DeleteDialogProps {}
 const DeleteDialog: FC<DeleteDialogProps> = () => {
     const dialog = useDialog()
     const [active, setActive] = useState<HoverState>(DefaultHState)
-    // cpa == close path active
-    const [CPA, setCPA] = useState(false)
 
     const closeHover = (hovering: boolean) => {
         setActive(s => {
@@ -53,34 +51,17 @@ const DeleteDialog: FC<DeleteDialogProps> = () => {
                     viewBox='0 0 1 1'
                     onMouseEnter={() => closeHover(true)}
                     onMouseLeave={() => closeHover(false)}
-                    style={!closeShow() ? { transitionDelay: '300ms' } : {}}
+                    style={!closeShow() ? { transitionDelay: '0ms' } : {}}
                 >
-                    <path
-                        className='close-bg'
-                        style={
-                            CPA
-                                ? {}
-                                : closeShow()
-                                ? { transitionDelay: '300ms' }
-                                : {}
-                        }
-                        d='M 0 0 L 1 0 L 1 1 Z'
-                        onClick={() => console.log(dialog)}
-                        onMouseDown={() => setCPA(true)}
-                        onMouseUp={() => setTimeout(() => setCPA(false), 300)}
-                    />
+                    <clipPath id='close-clip'>
+                        <path d='M 0 0 L .9 0 L 1 .1 L 1 1 Z' />
+                    </clipPath>
 
                     <path
-                        style={
-                            CPA
-                                ? {}
-                                : closeShow()
-                                ? { transitionDelay: '300ms' }
-                                : {}
-                        }
-                        className='close-sign'
-                        d='M 0.5 0.08 L 0.9 0.48 Z M 0.9 0.08 L 0.5 0.48 Z'
-                        // d='M 0.6875 0.0625 L 0.6875 0.5625 Z M 0.4375 0.3125 L 0.9375 0.3125 Z'
+                        clipPath='url(#close-clip)'
+                        className='close-bg'
+                        d='M0 0 .9 0 1 .1 1 1ZM.54.14.86.42ZM.86.14.54.42Z'
+                        onClick={() => dialog.setContent(null)}
                     />
                 </svg>
             </div>

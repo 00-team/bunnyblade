@@ -1,56 +1,48 @@
-#__dialog__ .del-dia {
-    position: absolute;
-    inset: 0;
-    // background-color: #f007;
+@use 'mixins' as *;
+@use 'fonts' as *;
 
-    .close {
-        position: absolute;
-        z-index: -1;
-        // z-index: 100;
-        top: 0;
-        right: 0;
-        width: calc(var(--ratio) - 2px);
-        height: calc(var(--ratio) - 2px);
-        pointer-events: all;
-        transform: translate(-100%, 100%);
-        transition: transform 300ms ease, z-index 0ms 300ms;
-
-        path {
-            &.close-bg {
-                cursor: pointer;
-                pointer-events: fill;
-                fill: var(--base-red);
-                transform: scale(0.5);
-                transform-origin: 70% 30%;
-                transition: transform 300ms ease;
-            }
-
-            &.close-sign {
-                stroke: #fff;
-                stroke-width: 0.05;
-                transform: scale(0.5);
-                transform-origin: 70% 30%;
-                transition: transform 300ms ease;
-            }
+#__dialog__ {
+    .hexabox {
+        .content {
+            @include TextFont(22px);
         }
+    }
 
-        &.active {
-            transform: translate(0, 0);
-            z-index: 2;
+    .del-dia {
+        position: absolute;
+        inset: 0;
+
+        .close {
+            position: absolute;
+            z-index: -1;
+            top: 0;
+            right: 0;
+            width: calc(var(--ratio) - 5px);
+            height: calc(var(--ratio) - 5px);
+            pointer-events: all;
+            transform: translate(-100%, 100%);
+            transition: transform 300ms ease, z-index 0ms 300ms;
 
             path {
-                transform: scale(1);
-            }
-        }
+                &.close-bg {
+                    cursor: pointer;
+                    pointer-events: fill;
+                    fill: var(--base-red);
+                    stroke: #fff;
+                    transform-origin: 70% 30%;
+                    transition: transform 300ms ease;
+                    stroke-width: 0.045;
 
-        path:active {
-            transform: scale(0.85);
-            + path {
-                // transition-delay: 0ms !important;
-                transform: scale(0.85);
+                    &:active {
+                        transform: scale(0.85);
+                    }
+                }
+            }
+
+            &.active {
+                transform: translate(0, 0);
+                z-index: 2;
             }
         }
-        // height: 10%;
-        // transform: rotate(45deg);
     }
 }
