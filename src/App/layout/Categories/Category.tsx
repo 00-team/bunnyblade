@@ -27,6 +27,7 @@ const Category: FC<CategoryProps> = ({ id, title, index }) => {
     const dispatch = useDispatch()
     const SCState = useSelector((s: RootState) => s.SelectCategory)
 
+    const [CTitle, setCTitle] = useState(title)
     const [Selected, setSelected] = useState(false)
     const [EditTitle, setEditTitle] = useState(false)
 
@@ -43,9 +44,14 @@ const Category: FC<CategoryProps> = ({ id, title, index }) => {
         else setSelected(false)
     }, [SCState])
 
+    useEffect(() => {
+        setCTitle(title)
+    }, [title])
+
     const Save = (NewTitle: string) => {
         setEditTitle(false)
         if (!NewTitle) return alert('error')
+        setCTitle(NewTitle)
         dispatch(Update({ id: id, title: NewTitle }))
     }
 
@@ -89,7 +95,7 @@ const Category: FC<CategoryProps> = ({ id, title, index }) => {
                     {EditTitle ? (
                         <Input
                             className='title-input'
-                            init={title}
+                            init={CTitle}
                             quit={() => setEditTitle(false)}
                             onSave={n => Save(n)}
                         />
@@ -100,7 +106,7 @@ const Category: FC<CategoryProps> = ({ id, title, index }) => {
                             }}
                             className='static-title'
                         >
-                            {title}
+                            {CTitle}
                         </span>
                     )}
                 </div>
