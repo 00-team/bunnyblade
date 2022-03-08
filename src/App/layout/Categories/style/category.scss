@@ -13,7 +13,7 @@
         display: flex;
         align-items: center;
         gap: 0.5em;
-        cursor: pointer;
+        // cursor: pointer;
         position: relative;
         padding-bottom: 0.2em;
         overflow: hidden;
@@ -108,72 +108,75 @@
         .checked {
             @include box(30px);
             flex-shrink: 0;
-        }
-
-        .todos-wrapper {
-            padding-left: 1.2em;
-            user-select: none;
-            ul {
-                list-style: none;
-                @include TextFont;
-                display: flex;
-                flex-direction: column;
-                gap: 0.5em;
-
-                li {
-                    $border_height: 2px;
-                    white-space: nowrap;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                    position: relative;
-                    padding-bottom: $border_height * 3;
-
-                    display: flex;
-                    overflow: hidden;
-                    justify-content: space-between;
-                    align-items: center;
-                    gap: 0.5em;
-
-                    span {
-                        cursor: pointer;
-                        width: 100%;
-                        overflow: hidden;
-                        text-overflow: ellipsis;
-                    }
-
-                    .hexacheck {
-                        @include box(30px);
-                        flex-shrink: 0;
-                    }
-
-                    .toder-container {
-                        pointer-events: none;
-                        position: absolute;
-                        bottom: 0;
-                        left: 0;
-                        right: 0;
-                        height: $border_height;
-
-                        .toder {
-                            position: absolute;
-                            inset: 0;
-                            left: auto;
-                            width: 0%;
-                            transition: width 400ms;
-                            background-color: currentColor;
-                        }
-                    }
-
-                    &:hover .toder-container .toder {
-                        left: 0;
-                        width: 100%;
-                    }
-                }
+            * {
+                cursor: default;
             }
         }
 
         &.show-select .select {
             width: 24px;
+        }
+    }
+
+    .todos-wrapper {
+        padding-left: 1.2em;
+        user-select: none;
+        ul {
+            list-style: none;
+            @include TextFont;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5em;
+
+            li {
+                $border_height: 2px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                position: relative;
+                padding-bottom: $border_height * 3;
+
+                display: flex;
+                overflow: hidden;
+                justify-content: space-between;
+                align-items: center;
+                gap: 0.5em;
+
+                span {
+                    cursor: pointer;
+                    width: 100%;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+
+                .hexacheck {
+                    @include box(30px);
+                    flex-shrink: 0;
+                }
+
+                .toder-container {
+                    pointer-events: none;
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    height: $border_height;
+
+                    .toder {
+                        position: absolute;
+                        inset: 0;
+                        left: auto;
+                        width: 0%;
+                        transition: width 400ms;
+                        background-color: currentColor;
+                    }
+                }
+
+                &:hover .toder-container .toder {
+                    left: 0;
+                    width: 100%;
+                }
+            }
         }
     }
 }

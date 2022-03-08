@@ -5,13 +5,17 @@ import { Transition, TransitionStatus } from 'react-transition-group'
 // redux
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'state'
-import { CategoryModel, CategoryTypes } from 'state/models/Category'
+import { CategoryModel } from 'state/models/Category'
+import { SelectedTypes } from 'state/models/Selected'
 import { Update } from 'state/actions/category'
 
 // components
 import Input from '~comps/common/Input'
 import Hexacheck from '~Hexa/Hexacheck'
 import Hexalect from '~Hexa/Hexalect'
+
+// todos
+import { TodosWrapper } from './Todo'
 
 // utils
 import { C } from '@00-team/utils'
@@ -25,24 +29,28 @@ interface CategoryProps extends CategoryModel {
 
 const Category: FC<CategoryProps> = ({ id, title, index }) => {
     const dispatch = useDispatch()
-    const SCState = useSelector((s: RootState) => s.SelectCategory)
+    // Selected Categories State
+    const SelectedState = useSelector((s: RootState) => s.Selected)
+    const Todos = useSelector((s: RootState) =>
+        s.Todo.todos.filter(t => t.category === id)
+    )
 
     const [CTitle, setCTitle] = useState(title)
     const [Selected, setSelected] = useState(false)
     const [EditTitle, setEditTitle] = useState(false)
 
     useEffect(() => {
-        if (SCState.active) setEditTitle(false)
-        if (!SCState.active) {
+        if (SelectedState.active) setEditTitle(false)
+        if (!SelectedState.active) {
             setTimeout(() => {
                 setSelected(false)
             }, index * 100)
             return
         }
 
-        if (SCState.categories.find(c => c === id)) setSelected(true)
+        if (SelectedState.categories.find(c => c.id === id)) setSelected(true)
         else setSelected(false)
-    }, [SCState])
+    }, [SelectedState])
 
     useEffect(() => {
         setCTitle(title)
@@ -57,7 +65,9 @@ const Category: FC<CategoryProps> = ({ id, title, index }) => {
 
     return (
         <div className='category-container'>
-            <div className={'category' + C(SCState.active, 'show-select')}>
+            <div
+                className={'category' + C(SelectedState.active, 'show-select')}
+            >
                 <div className={'bborder' + C(Selected, 'active')}>
                     <div />
                     <div />
@@ -84,8 +94,11 @@ const Category: FC<CategoryProps> = ({ id, title, index }) => {
                         selected={Selected}
                         onClick={() =>
                             dispatch({
-                                type: CategoryTypes.TOGGLE_SELECTED,
-                                payload: id,
+                                type: SelectedTypes.TOGGLE_CATEGORY,
+                                payload: {
+                                    id: id,
+                                    title: title,
+                                },
                             })
                         }
                     />
@@ -102,7 +115,8 @@ const Category: FC<CategoryProps> = ({ id, title, index }) => {
                     ) : (
                         <span
                             onDoubleClick={() => {
-                                if (!SCState.active) setEditTitle(!EditTitle)
+                                if (!SelectedState.active)
+                                    setEditTitle(!EditTitle)
                             }}
                             className='static-title'
                         >
@@ -114,7 +128,7 @@ const Category: FC<CategoryProps> = ({ id, title, index }) => {
                     <Hexacheck checked={false} />
                 </div>
             </div>
-            {/* <TodosWrapper todos={todos} /> */}
+            <TodosWrapper todos={Todos} />
         </div>
     )
 }
@@ -161,32 +175,5 @@ const EBStyle: EBS = (index, status) => {
 //         <div className='null-category'>
 //             <TodosWrapper todos={todos} />
 //         </div>
-//     )
-// }
-
-// const TodosWrapper: FC<{ todos: TodoModel[] }> = ({ todos }) => {
-//     return (
-//         <div className='todos-wrapper'>
-//             <ul>
-//                 {todos.map((todo, index) => (
-//                     <TodoItem {...todo} key={index} />
-//                 ))}
-//             </ul>
-//         </div>
-//     )
-// }
-
-// const TodoItem: FC<TodoModel> = ({ name, checked }) => {
-//     const [Checked, setChecked] = useState(checked)
-
-//     return (
-//         <li>
-//             <span>{name}</span>
-//             <Hexacheck checked={Checked} onClick={() => setChecked(!Checked)} />
-
-//             <div className='toder-container'>
-//                 <div className='toder' />
-//             </div>
-//         </li>
 //     )
 // }

@@ -4,12 +4,15 @@ import { combineReducers } from 'redux'
 import { App } from './app'
 
 // data
-import { Category, SelectCategory } from './category'
+import { Category } from './category'
+import { Todo } from './todo'
+import { Selected } from './selected'
 
 const reducers = combineReducers({
     App,
     Category,
-    SelectCategory,
+    Selected,
+    Todo,
 })
 
 export type RootState = ReturnType<typeof reducers>

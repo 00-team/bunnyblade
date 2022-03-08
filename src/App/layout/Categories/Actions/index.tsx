@@ -1,9 +1,9 @@
 import React, { FC, useEffect, useState } from 'react'
 
-// redux
+// redux state
 import { useDispatch, useSelector } from 'react-redux'
 import { Add } from 'state/actions/category'
-import { CategoryTypes } from 'state/models/Category'
+import { SelectedTypes } from 'state/models/Selected'
 import { RootState } from 'state'
 
 // dialog
@@ -24,12 +24,8 @@ interface ActionSvg {
 
 const Actions: FC<ActionsProps> = () => {
     const dispatch = useDispatch()
-    const Selected = useSelector((s: RootState) => s.SelectCategory)
+    const Selected = useSelector((s: RootState) => s.Selected)
     const dialog = useDialog()
-
-    useEffect(() => {
-        dialog.setContent(<DeleteDialog />)
-    }, [])
 
     // A = active
     // S = Stay Active
@@ -60,17 +56,13 @@ const Actions: FC<ActionsProps> = () => {
         },
         {
             className: 'checklist',
-            onClick: () => dispatch({ type: CategoryTypes.TOGGLE_SELECT }),
+            onClick: () => dispatch({ type: SelectedTypes.TOGGLE }),
             icon: 'M2.9241.6366 1.1563 3.7301 1.6652 3.4361 2.9241 1.2332ZM3.0724.6397V1.2282L4.376 3.4625 4.8924 3.7598C4.2846 2.7205 3.6785 1.6795 3.0724.6397ZM4.3109 3.5959 1.6649 3.6074 1.1484 3.9055 4.8199 3.8899Z',
         },
         {
             className: 'delete',
             onClick: () => {
                 dialog.setContent(<DeleteDialog />)
-                // if (hexafirm) hexafirm.cb('gggggg')
-                // Selected.categories.forEach(c => dispatch(Delete(c)))
-                // dispatch({ type: CategoryTypes.TOGGLE_SELECT })
-                // dispatch({ type: CategoryTypes.TOGGLE_SELECT })
             },
             icon: 'M2.4352 1.2624V1.2624H3.5296 3.5296V1.5216H3.7888V1.2336C3.7888 1.1065 3.6855 1.0032 3.5584 1.0032H2.4064C2.2793 1.0032 2.176 1.1065 2.176 1.2336V1.5216H2.4352V1.2624ZM4.2496 1.5216H1.7152C1.6515 1.5216 1.6 1.5731 1.6 1.6368V1.6C1.6 1.7678 1.613 1.7808 1.6288 1.7808H1.8462L1.9352 3.6636C1.9409 3.7864 2.0424 3.8832 2.1652 3.8832H3.7996C3.9227 3.8832 4.0239 3.7867 4.0296 3.6636L4.1186 1.7808H4.336C4.3518 1.7808 4.3648 1.7678 4.3648 1.752V1.6368C4.3648 1.5731 4.3133 1.5216 4.2496 1.5216ZM3.7719 3.624H2.1929L2.1058 1.7808H3.859L3.7719 3.624Z',
         },

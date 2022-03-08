@@ -12,6 +12,10 @@ import { useDialog } from '~comps/dialog'
 // utils
 import { C } from '@00-team/utils'
 
+// redux
+import { useSelector } from 'react-redux'
+import { RootState } from 'state'
+
 interface HoverState {
     hovering: boolean
     onTriangles: boolean
@@ -44,7 +48,8 @@ const DeleteDialog: FC<DeleteDialogProps> = () => {
             width={550}
             onHover={props => setActive({ ...active, ...props })}
         >
-            Are you sure you wanna delete this categories???
+            Are you sure you wanna delete this categories ?
+            <CategoryMap />
             <div className='del-dia'>
                 <svg
                     className={'close' + C(closeShow(), 'active')}
@@ -60,7 +65,7 @@ const DeleteDialog: FC<DeleteDialogProps> = () => {
                     <path
                         clipPath='url(#close-clip)'
                         className='close-bg'
-                        d='M0 0 .9 0 1 .1 1 1ZM.54.14.86.42ZM.86.14.54.42Z'
+                        d='M0 0 .9 0 1 .1 1 1ZM.58.14.86.42ZM.86.14.58.42Z'
                         onClick={() => dialog.setContent(null)}
                     />
                 </svg>
@@ -70,3 +75,15 @@ const DeleteDialog: FC<DeleteDialogProps> = () => {
 }
 
 export default DeleteDialog
+
+const CategoryMap: FC = () => {
+    const SelectedMap = useSelector((s: RootState) => s.Selected)
+
+    return (
+        <div className='selected-map'>
+            {SelectedMap.categories.map(c => (
+                <div>{c.title}</div>
+            ))}
+        </div>
+    )
+}

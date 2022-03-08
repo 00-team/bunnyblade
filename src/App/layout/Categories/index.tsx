@@ -4,6 +4,7 @@ import React, { FC, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { RootState } from 'state'
 import { GetAll } from 'state/actions/category'
+import { GetAll as GetAllTodos } from 'state/actions/todo'
 
 // components
 import Actions from './Actions'
@@ -18,6 +19,7 @@ const Categories: FC = () => {
 
     useEffect(() => {
         dispatch(GetAll())
+        dispatch(GetAllTodos())
     }, [dispatch])
 
     return (
