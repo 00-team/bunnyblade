@@ -12,6 +12,9 @@ import { InitDB } from './Data'
 // config
 import { DEBUG, App, APP_ICON } from './config/main'
 
+// process
+process.traceProcessWarnings = true
+
 // global variables
 var TaryMenu: Tray | null = null
 var isAppQuiting = false
@@ -129,7 +132,3 @@ app.whenReady().then(async () => {
         if (BrowserWindow.getAllWindows().length === 0) CreateWindow()
     })
 })
-
-// app.commandLine.appendSwitch('ignore-certificate-errors')
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = 'false'
-process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = 'true'
