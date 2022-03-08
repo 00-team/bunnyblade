@@ -9,9 +9,9 @@ import { CategoryModel, CategoryTypes } from 'state/models/Category'
 import { Update } from 'state/actions/category'
 
 // components
-import Input from '../../components/common/Input'
-import Hexacheck from '../../components/Hexa/Hexacheck'
-import Hexalect from '../../components/Hexa/Hexalect'
+import Input from '~comps/common/Input'
+import Hexacheck from '~Hexa/Hexacheck'
+import Hexalect from '~Hexa/Hexalect'
 
 // utils
 import { C } from '@00-team/utils'
