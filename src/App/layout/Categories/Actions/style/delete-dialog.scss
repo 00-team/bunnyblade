@@ -8,6 +8,11 @@
         }
     }
 
+    button {
+        cursor: pointer;
+        pointer-events: all;
+    }
+
     .del-dia {
         position: absolute;
         inset: 0;

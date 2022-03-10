@@ -13,8 +13,11 @@ import { useDialog } from '~comps/dialog'
 import { C } from '@00-team/utils'
 
 // redux
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'state'
+import { Delete as DeleteTodo } from 'state/actions/todo'
+import { Delete as DeleteCategory } from 'state/actions/category'
+import { SelectedTypes } from 'state/models/Selected'
 
 interface HoverState {
     hovering: boolean
@@ -32,6 +35,8 @@ interface DeleteDialogProps {}
 
 const DeleteDialog: FC<DeleteDialogProps> = () => {
     const dialog = useDialog()
+    const dispatch = useDispatch()
+    const SelectedMap = useSelector((s: RootState) => s.Selected)
     const [active, setActive] = useState<HoverState>(DefaultHState)
 
     const closeHover = (hovering: boolean) => {
@@ -43,6 +48,13 @@ const DeleteDialog: FC<DeleteDialogProps> = () => {
     const closeShow = () =>
         active.close || (active.hovering && !active.onTriangles)
 
+    const DeleteSelected = () => {
+        dispatch({ type: SelectedTypes.CLEAR_ALL })
+        SelectedMap.todos.forEach(t => dispatch(DeleteTodo(t.id)))
+        SelectedMap.categories.forEach(c => dispatch(DeleteCategory(c.id)))
+        dialog.setContent(null)
+    }
+
     return (
         <Hexabox
             width={550}
@@ -50,6 +62,7 @@ const DeleteDialog: FC<DeleteDialogProps> = () => {
         >
             Are you sure you wanna delete this categories ?
             <CategoryMap />
+            <button onClick={() => DeleteSelected()}>Delete</button>
             <div className='del-dia'>
                 <svg
                     className={'close' + C(closeShow(), 'active')}
@@ -81,8 +94,12 @@ const CategoryMap: FC = () => {
 
     return (
         <div className='selected-map'>
-            {SelectedMap.categories.map(c => (
-                <div>{c.title}</div>
+            {SelectedMap.categories.map((c, index) => (
+                <div key={index}>{c.title}</div>
+            ))}
+
+            {SelectedMap.todos.map((t, index) => (
+                <div key={index}>{t.title}</div>
             ))}
         </div>
     )
