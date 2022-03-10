@@ -34,6 +34,7 @@ const Category: FC<CategoryProps> = ({ id, title, index }) => {
     const Todos = useSelector((s: RootState) =>
         s.Todo.todos.filter(todo => todo.category === id)
     )
+    // const Checked =  useSelector((s: RootState) => s.Todo.todos.every(t => t.))
 
     const [CTitle, setCTitle] = useState(title)
     const [Selected, setSelected] = useState(false)
@@ -61,6 +62,15 @@ const Category: FC<CategoryProps> = ({ id, title, index }) => {
         if (!NewTitle) return alert('error')
         setCTitle(NewTitle)
         dispatch(Update({ id: id, title: NewTitle }))
+    }
+
+    const Checked = (): boolean | 'barely' => {
+        if (Todos.length < 1) return false
+
+        if (Todos.every(t => t.checked)) return true
+        else if (Todos.some(t => t.checked)) return 'barely'
+
+        return false
     }
 
     return (
@@ -126,7 +136,7 @@ const Category: FC<CategoryProps> = ({ id, title, index }) => {
                 </div>
 
                 <div className='checked'>
-                    <Hexacheck checked={false} />
+                    <Hexacheck checked={Checked()} />
                 </div>
             </div>
 
