@@ -25,6 +25,19 @@
 
             gap: 0.5em;
 
+            .select {
+                flex-shrink: 0;
+                @include f-center;
+                @include box(24px);
+                width: 0px;
+                transition: width 70ms linear;
+                --overlay: var(--other-color);
+
+                &.show {
+                    width: 24px;
+                }
+            }
+
             span {
                 cursor: pointer;
                 width: 100%;
