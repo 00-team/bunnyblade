@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, StrictMode } from 'react'
 import { render } from 'react-dom'
 
 import { DialogProvider } from './components/dialog'
@@ -13,12 +13,18 @@ import { store } from 'state'
 
 const Root: FC = () => {
     return (
-        <Redux store={store}>
-            <DialogProvider>
-                <App />
-            </DialogProvider>
-        </Redux>
+        <StrictMode>
+            <Redux store={store}>
+                <DialogProvider>
+                    <App />
+                </DialogProvider>
+            </Redux>
+        </StrictMode>
     )
 }
 
-render(<Root />, document.getElementById('root'))
+render(
+    <Root />,
+
+    document.getElementById('root')
+)
