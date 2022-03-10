@@ -3,6 +3,9 @@ import { Dispatch } from 'redux'
 
 import { CategoryTypes } from '../models/Category'
 
+// todos
+import { GetAll as GetAllTodos } from './todo'
+
 // config
 import { SIGNALS } from './config'
 type D = (d: Dispatch<any>) => Promise<void>
@@ -44,6 +47,7 @@ const Delete: DC = id => async dispatch => {
         signal: SIGNALS.DELETE,
         id: id,
     })
+    dispatch(GetAllTodos())
     dispatch(GetAll())
 }
 
