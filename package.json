@@ -22,7 +22,7 @@
     },
     "homepage": "https://github.com/00-team/bunnyblade#readme",
     "dependencies": {
-        "@00-team/utils": "^0.0.7",
+        "@00-team/utils": "^0.0.9",
         "react": "^17.0.2",
         "react-alert": "^7.0.3",
         "react-dom": "^17.0.2",
