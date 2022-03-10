@@ -33,11 +33,7 @@ export default Hexacheck
 
 const ANIME = {
     fill: 'freeze',
-
     calcMode: 'linear',
-    // calcMode: 'spline',
-    // keyTimes: '0; 1',
-    // keySplines: '.2 0 0 1',
     dur: '200ms',
 }
 const ANIME2 = {
@@ -46,7 +42,6 @@ const ANIME2 = {
     begin: '140ms',
     calcMode: 'spline',
     keyTimes: '0; 1',
-    // keySplines: '0 .1 .9 0',
     keySplines: '0.42, 0.0, 0.58, 1.0',
 }
 const LINE1 = {
