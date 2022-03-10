@@ -32,7 +32,7 @@ const Category: FC<CategoryProps> = ({ id, title, index }) => {
     // Selected Categories State
     const SelectedState = useSelector((s: RootState) => s.Selected)
     const Todos = useSelector((s: RootState) =>
-        s.Todo.todos.filter(t => t.category === id)
+        s.Todo.todos.filter(todo => todo.category === id)
     )
 
     const [CTitle, setCTitle] = useState(title)
@@ -124,17 +124,20 @@ const Category: FC<CategoryProps> = ({ id, title, index }) => {
                         </span>
                     )}
                 </div>
+
                 <div className='checked'>
                     <Hexacheck checked={false} />
                 </div>
             </div>
-            <TodosWrapper todos={Todos} />
+
+            {Todos.length > 1 ? <TodosWrapper todos={Todos} /> : <Empty />}
         </div>
     )
 }
 
 export default Category
 
+// edit title border style
 type EBS = (index: number, status: TransitionStatus) => CSSProperties
 const EBStyle: EBS = (index, status) => {
     const EBDelay = 200
@@ -170,10 +173,6 @@ const EBStyle: EBS = (index, status) => {
     }
 }
 
-// const NullCategory: FC<CategoryModel> = ({ todos }) => {
-//     return (
-//         <div className='null-category'>
-//             <TodosWrapper todos={todos} />
-//         </div>
-//     )
-// }
+const Empty: FC = () => {
+    return <div className='empty-sign'>-- Empty --</div>
+}

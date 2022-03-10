@@ -9,6 +9,7 @@ import { GetAll as GetAllTodos } from 'state/actions/todo'
 // components
 import Actions from './Actions'
 import Category from './Category'
+import { TodosWrapper } from './Todo'
 
 // style
 import './style/categories.scss'
@@ -16,6 +17,9 @@ import './style/categories.scss'
 const Categories: FC = () => {
     const dispatch = useDispatch()
     const CategoryState = useSelector((s: RootState) => s.Category)
+    const OrphanTodos = useSelector((s: RootState) =>
+        s.Todo.todos.filter(todo => todo.category === null)
+    )
 
     useEffect(() => {
         dispatch(GetAll())
@@ -28,6 +32,10 @@ const Categories: FC = () => {
                 {CategoryState.map((c, index) => (
                     <Category {...c} key={index} index={index} />
                 ))}
+
+                <div className='orphan-todos'>
+                    <TodosWrapper todos={OrphanTodos} />
+                </div>
             </div>
 
             <Actions />

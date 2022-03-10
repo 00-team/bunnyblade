@@ -1,6 +1,8 @@
 @use 'mixins' as *;
 @use 'fonts' as *;
 
+@use 'sass:math';
+
 .categories-container .categories .category-container {
     display: flex;
     flex-direction: column;
@@ -106,7 +108,7 @@
         }
 
         .checked {
-            @include box(30px);
+            @include box(33px);
             flex-shrink: 0;
             * {
                 cursor: default;
@@ -118,66 +120,15 @@
         }
     }
 
-    .todos-wrapper {
-        padding-left: 1.2em;
+    .empty-sign {
+        @include f-center;
+        @include TextFont(16px);
         user-select: none;
-        ul {
-            list-style: none;
-            @include TextFont;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5em;
+        color: var(--base-dark-white);
+    }
 
-            li {
-                $border_height: 2px;
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                position: relative;
-                padding-bottom: $border_height * 3;
-
-                display: flex;
-                overflow: hidden;
-                justify-content: space-between;
-                align-items: center;
-                gap: 0.5em;
-
-                span {
-                    cursor: pointer;
-                    width: 100%;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                }
-
-                .hexacheck {
-                    @include box(30px);
-                    flex-shrink: 0;
-                }
-
-                .toder-container {
-                    pointer-events: none;
-                    position: absolute;
-                    bottom: 0;
-                    left: 0;
-                    right: 0;
-                    height: $border_height;
-
-                    .toder {
-                        position: absolute;
-                        inset: 0;
-                        left: auto;
-                        width: 0%;
-                        transition: width 400ms;
-                        background-color: currentColor;
-                    }
-                }
-
-                &:hover .toder-container .toder {
-                    left: 0;
-                    width: 100%;
-                }
-            }
-        }
+    .todos-wrapper {
+        padding-inline: 1.1em math.div(33px - 28px, 2);
     }
 }
 

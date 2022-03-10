@@ -1,4 +1,7 @@
-import React, { FC, useState } from 'react'
+import React, { CSSProperties, FC, useState } from 'react'
+
+// style
+import './style/todo.scss'
 
 // redux state
 import { TodoModel } from 'state/models/Todo'
@@ -18,16 +21,52 @@ const TodosWrapper: FC<{ todos: TodoModel[] }> = ({ todos }) => {
     )
 }
 
+interface ToderState {
+    hovering: boolean
+    style: CSSProperties
+}
+
 const TodoItem: FC<TodoModel> = ({ title, checked }) => {
+    const [Toder, setToder] = useState<ToderState>({
+        hovering: false,
+        style: {},
+    })
     const [Checked, setChecked] = useState(checked)
 
+    const Reset = () =>
+        setTimeout(
+            () =>
+                setToder(s => {
+                    if (!s.hovering) {
+                        return {
+                            hovering: false,
+                            style: { transitionDuration: '0ms' },
+                        }
+                    }
+
+                    return s
+                }),
+            400
+        )
+
+    const setHovering = (h: boolean) => {
+        if (h) setToder({ hovering: true, style: { left: 0 } })
+        else {
+            setToder({ hovering: false, style: { left: '100%' } })
+            Reset()
+        }
+    }
+
     return (
-        <li>
+        <li
+            onMouseEnter={() => setHovering(true)}
+            onMouseLeave={() => setHovering(false)}
+        >
             <span>{title}</span>
             <Hexacheck checked={Checked} onClick={() => setChecked(!Checked)} />
 
             <div className='toder-container'>
-                <div className='toder' />
+                <div className='toder' style={Toder.style} />
             </div>
         </li>
     )
