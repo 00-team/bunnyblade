@@ -17,6 +17,7 @@ enum SelectedTypes {
     TOGGLE = 'TOGGLE_SELECTED_ACTIVE',
     TOGGLE_CATEGORY = 'TOGGLE_SELECTED_CATEGORY',
     TOGGLE_TODO = 'TOGGLE_SELECTED_TODO',
+    CLEAR_ALL = 'CLEAR_ALL_SELECTED_ITEMS',
 }
 
 export { SelectedState, DefaultSState, SelectedTypes }

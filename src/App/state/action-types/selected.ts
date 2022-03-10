@@ -14,4 +14,8 @@ interface TOGGLE_TODO {
     payload: TodoModel
 }
 
-export type Action = TOGGLE | TOGGLE_CATEGORY | TOGGLE_TODO
+interface CLEAR_ALL {
+    type: SelectedTypes.CLEAR_ALL
+}
+
+export type Action = TOGGLE | TOGGLE_CATEGORY | TOGGLE_TODO | CLEAR_ALL

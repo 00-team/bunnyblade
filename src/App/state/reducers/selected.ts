@@ -37,6 +37,9 @@ const Selected = (state = DefaultSState, action: Action): SelectedState => {
                 todos: [...state.todos, action.payload],
             }
 
+        case SelectedTypes.CLEAR_ALL:
+            return { ...state, todos: [], categories: [] }
+
         default:
             return state
     }
