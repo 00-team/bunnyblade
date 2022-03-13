@@ -3,6 +3,7 @@ import { TodoTypes } from '../models/Todo'
 
 // config
 import { SIGNALS } from './config'
+
 type D = (d: Dispatch<any>) => Promise<void>
 
 type GA = () => D

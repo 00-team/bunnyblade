@@ -34,6 +34,8 @@ const Category: FC<CategoryProps> = ({ id, title, index }) => {
     const Todos = useSelector((s: RootState) =>
         s.Todo.todos.filter(todo => todo.category === id)
     )
+
+    // console.log(title, id)
     // const Checked =  useSelector((s: RootState) => s.Todo.todos.every(t => t.))
 
     const [CTitle, setCTitle] = useState(title)
@@ -140,7 +142,7 @@ const Category: FC<CategoryProps> = ({ id, title, index }) => {
                 </div>
             </div>
 
-            {Todos.length > 1 ? <TodosWrapper todos={Todos} /> : <Empty />}
+            {Todos.length > 0 ? <TodosWrapper todos={Todos} /> : <Empty />}
         </div>
     )
 }
