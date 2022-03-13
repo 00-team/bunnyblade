@@ -121,8 +121,10 @@ const CreateTray = (win: BrowserWindow) => {
 }
 
 app.whenReady().then(async () => {
-    await session.defaultSession.loadExtension(DEV_THEME)
-    await session.defaultSession.loadExtension(REACT_EXT)
+    if (DEBUG) {
+        await session.defaultSession.loadExtension(DEV_THEME)
+        await session.defaultSession.loadExtension(REACT_EXT)
+    }
     await InitDB()
 
     const win = CreateWindow()
