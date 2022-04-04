@@ -34,7 +34,10 @@ const Categories: FC = () => {
                 ))}
 
                 <div className='orphan-todos'>
-                    <TodosWrapper todos={OrphanTodos} />
+                    <TodosWrapper
+                        todos={OrphanTodos}
+                        category_index={CategoryState.length}
+                    />
                 </div>
             </div>
 

@@ -142,7 +142,11 @@ const Category: FC<CategoryProps> = ({ id, title, index }) => {
                 </div>
             </div>
 
-            {Todos.length > 0 ? <TodosWrapper todos={Todos} /> : <Empty />}
+            {Todos.length > 0 ? (
+                <TodosWrapper todos={Todos} category_index={index} />
+            ) : (
+                <Empty />
+            )}
         </div>
     )
 }
