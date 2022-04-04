@@ -1,11 +1,11 @@
+import React, { FC, MouseEventHandler } from 'react'
 import { C } from '@00-team/utils'
-import React, { FC } from 'react'
 
 import './style/hexalect.scss'
 
 interface HexalectProps {
     selected?: boolean
-    onClick?: () => void
+    onClick?: MouseEventHandler<SVGPathElement>
 }
 
 const Hexalect: FC<HexalectProps> = ({ selected, onClick }) => {
