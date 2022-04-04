@@ -1,4 +1,4 @@
-import React, { CSSProperties, FC, useEffect, useState } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 
 // style
 import './style/todo.scss'
@@ -39,11 +39,6 @@ const TodosWrapper: FC<TodosWrapperProps> = ({ todos, category_index }) => {
     )
 }
 
-interface ToderState {
-    hovering: boolean
-    style: CSSProperties
-}
-
 interface TodoItemProps extends TodoModel {
     index: number
     category_index: number
@@ -51,80 +46,35 @@ interface TodoItemProps extends TodoModel {
 
 const TodoItem: FC<TodoItemProps> = props => {
     // props
-    const { index, category_index, ...todo } = props
+    const { checked, id, title } = props
 
     // hooks setup
     const dispatch = useDispatch()
 
     // state
-    const [Toder, setToder] = useState<ToderState>({
-        hovering: false,
-        style: {},
-    })
-    const [Checked, setChecked] = useState(todo.checked)
+    const [Checked, setChecked] = useState(checked)
 
     // effects
     useEffect(() => {
-        dispatch(Update({ id: todo.id, checked: Checked }))
+        dispatch(Update({ id: id, checked: Checked }))
     }, [Checked])
 
-    const Reset = () =>
-        setTimeout(
-            () =>
-                setToder(s => {
-                    if (!s.hovering) {
-                        return {
-                            hovering: false,
-                            style: { transitionDuration: '0ms' },
-                        }
-                    }
-
-                    return s
-                }),
-            400
-        )
-
-    const setHovering = (h: boolean) => {
-        if (h) setToder({ hovering: true, style: { left: 0 } })
-        else {
-            setToder({ hovering: false, style: { left: '100%' } })
-            Reset()
-        }
-    }
-
     return (
-        <li
-            onMouseEnter={() => setHovering(true)}
-            onMouseLeave={() => setHovering(false)}
-        >
-            <SelectTodo
-                todo={todo}
-                index={index}
-                category_index={category_index}
-            />
-            <span>
-                {todo.title} - {todo.id}
-            </span>
+        <li>
+            <SelectTodo {...props} />
+
+            <span>{title}</span>
+
             <Hexacheck checked={Checked} onClick={() => setChecked(!Checked)} />
 
-            <div className='toder-container'>
-                <div className='toder' style={Toder.style} />
-            </div>
+            <div className='hover-anime' />
         </li>
     )
 }
 
-interface SelectTodoProps {
-    index: number
-    category_index: number
-    todo: TodoModel
-}
-
-const SelectTodo: FC<SelectTodoProps> = ({ todo, category_index, index }) => {
+const SelectTodo: FC<TodoItemProps> = ({ category_index, index, ...todo }) => {
     const dispatch = useDispatch()
-
     const SelectedState = useSelector((s: RootState) => s.Selected)
-
     const isSelected = () => !!SelectedState.todos.find(t => t.id === todo.id)
 
     return (

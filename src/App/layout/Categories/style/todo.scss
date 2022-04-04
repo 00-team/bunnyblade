@@ -50,22 +50,21 @@
                 flex-shrink: 0;
             }
 
-            .toder-container {
+            .hover-anime {
                 pointer-events: none;
                 position: absolute;
-                bottom: 0;
+                bottom: $border_height * -2;
                 left: 0;
                 right: 0;
                 height: $border_height;
+                border-top-left-radius: 3px;
+                border-top-right-radius: 3px;
+                background-color: currentColor;
+                transition: bottom 300ms;
+            }
 
-                .toder {
-                    position: absolute;
-                    inset: 0;
-                    width: 100%;
-                    left: -100%;
-                    transition: left 400ms;
-                    background-color: currentColor;
-                }
+            &:hover .hover-anime {
+                bottom: 0;
             }
         }
     }
