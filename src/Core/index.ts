@@ -2,6 +2,9 @@ import { app, session } from 'electron'
 import { BrowserWindow, Menu, nativeImage, Tray } from 'electron'
 import { ipcMain } from 'electron'
 
+// file system
+import { existsSync } from 'fs'
+
 // paths
 import { resolve } from './config/path'
 import { DEV_THEME, REACT_EXT } from './config/path'
@@ -122,8 +125,11 @@ const CreateTray = (win: BrowserWindow) => {
 
 app.whenReady().then(async () => {
     if (DEBUG) {
-        await session.defaultSession.loadExtension(DEV_THEME)
-        await session.defaultSession.loadExtension(REACT_EXT)
+        if (existsSync(DEV_THEME))
+            await session.defaultSession.loadExtension(DEV_THEME)
+
+        if (existsSync(REACT_EXT))
+            await session.defaultSession.loadExtension(REACT_EXT)
     }
     await InitDB()
 
