@@ -10,6 +10,8 @@ const EXTS = '/AppData/Local/Google/Chrome/User Data/Default/Extensions/'
 const REACT_ID = 'fmkadmapgofadopljbjfkapdkoienihi'
 const REACT_EXT = join(homedir(), EXTS, REACT_ID, '4.24.0_0')
 
-const DEV_THEME = resolve('P:/00 Team/Fun/00 Team DevTools Theme')
+const DEV_THEME = resolve(
+    'P:/00-Team/Projects/chrome-extensions/devtools-theme'
+)
 
 export { REACT_EXT, DEV_THEME }
