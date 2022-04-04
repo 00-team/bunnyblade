@@ -17,12 +17,22 @@ import Hexalect from '~Hexa/Hexalect'
 // utils
 import { C } from '@00-team/utils'
 
-const TodosWrapper: FC<{ todos: TodoModel[] }> = ({ todos }) => {
+interface TodosWrapperProps {
+    todos: TodoModel[]
+    category_index: number
+}
+
+const TodosWrapper: FC<TodosWrapperProps> = ({ todos, category_index }) => {
     return (
         <div className='todos-wrapper'>
             <ul>
                 {todos.map((todo, index) => (
-                    <TodoItem {...todo} key={index} index={0} />
+                    <TodoItem
+                        {...todo}
+                        key={index}
+                        index={0}
+                        category_index={category_index}
+                    />
                 ))}
             </ul>
         </div>
@@ -36,33 +46,26 @@ interface ToderState {
 
 interface TodoItemProps extends TodoModel {
     index: number
+    category_index: number
 }
 
 const TodoItem: FC<TodoItemProps> = props => {
-    const { id, title, checked, index } = props
+    // props
+    const { index, category_index, ...todo } = props
+
+    // hooks setup
     const dispatch = useDispatch()
-    const SelectedState = useSelector((s: RootState) => s.Selected)
+
+    // state
     const [Toder, setToder] = useState<ToderState>({
         hovering: false,
         style: {},
     })
-    const [Checked, setChecked] = useState(checked)
-    const [Selected, setSelected] = useState(false)
+    const [Checked, setChecked] = useState(todo.checked)
 
+    // effects
     useEffect(() => {
-        if (!SelectedState.active) {
-            setTimeout(() => {
-                setSelected(false)
-            }, index * 100)
-            return
-        }
-
-        if (SelectedState.todos.find(t => t.id === id)) setSelected(true)
-        else setSelected(false)
-    }, [SelectedState])
-
-    useEffect(() => {
-        dispatch(Update({ id: id, checked: Checked }))
+        dispatch(Update({ id: todo.id, checked: Checked }))
     }, [Checked])
 
     const Reset = () =>
@@ -94,23 +97,13 @@ const TodoItem: FC<TodoItemProps> = props => {
             onMouseEnter={() => setHovering(true)}
             onMouseLeave={() => setHovering(false)}
         >
-            <div
-                className={'select' + C(SelectedState.active, 'show')}
-                style={{ transitionDelay: `${index * 100}ms` }}
-            >
-                <Hexalect
-                    selected={Selected}
-                    onClick={() =>
-                        dispatch({
-                            type: SelectedTypes.TOGGLE_TODO,
-                            payload: props,
-                        })
-                    }
-                />
-            </div>
-
+            <SelectTodo
+                todo={todo}
+                index={index}
+                category_index={category_index}
+            />
             <span>
-                {title} - {id}
+                {todo.title} - {todo.id}
             </span>
             <Hexacheck checked={Checked} onClick={() => setChecked(!Checked)} />
 
@@ -118,6 +111,39 @@ const TodoItem: FC<TodoItemProps> = props => {
                 <div className='toder' style={Toder.style} />
             </div>
         </li>
+    )
+}
+
+interface SelectTodoProps {
+    index: number
+    category_index: number
+    todo: TodoModel
+}
+
+const SelectTodo: FC<SelectTodoProps> = ({ todo, category_index, index }) => {
+    const dispatch = useDispatch()
+
+    const SelectedState = useSelector((s: RootState) => s.Selected)
+
+    const isSelected = () => !!SelectedState.todos.find(t => t.id === todo.id)
+
+    return (
+        <div
+            className={'select' + C(SelectedState.active, 'show')}
+            style={{
+                transitionDelay: `${(category_index + index) * 100}ms`,
+            }}
+        >
+            <Hexalect
+                selected={isSelected()}
+                onClick={() => {
+                    dispatch({
+                        type: SelectedTypes.TOGGLE_TODO,
+                        payload: todo,
+                    })
+                }}
+            />
+        </div>
     )
 }
 
