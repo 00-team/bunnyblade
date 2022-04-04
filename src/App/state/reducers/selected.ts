@@ -7,7 +7,12 @@ const exists: E = (list, id) => !!list.find(item => item.id === id)
 const Selected = (state = DefaultSState, action: Action): SelectedState => {
     switch (action.type) {
         case SelectedTypes.TOGGLE:
-            return { ...state, active: !state.active }
+            return {
+                ...state,
+                active: !state.active,
+                todos: [],
+                categories: [],
+            }
 
         case SelectedTypes.TOGGLE_CATEGORY:
             if (exists(state.categories, action.payload.id))
