@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react'
+import React, { FC } from 'react'
 
 // style
 import './style/todo.scss'
@@ -45,19 +45,8 @@ interface TodoItemProps extends TodoModel {
 }
 
 const TodoItem: FC<TodoItemProps> = props => {
-    // props
     const { checked, id, title } = props
-
-    // hooks setup
     const dispatch = useDispatch()
-
-    // state
-    const [Checked, setChecked] = useState(checked)
-
-    // effects
-    useEffect(() => {
-        dispatch(Update({ id: id, checked: Checked }))
-    }, [Checked])
 
     return (
         <li>
@@ -65,7 +54,10 @@ const TodoItem: FC<TodoItemProps> = props => {
 
             <span>{title}</span>
 
-            <Hexacheck checked={Checked} onClick={() => setChecked(!Checked)} />
+            <Hexacheck
+                checked={checked}
+                onClick={() => dispatch(Update({ id: id, checked: !checked }))}
+            />
 
             <div className='hover-anime' />
         </li>
