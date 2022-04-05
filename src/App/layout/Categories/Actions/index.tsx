@@ -3,7 +3,7 @@ import React, { FC, useEffect, useState } from 'react'
 // redux state
 import { useDispatch, useSelector } from 'react-redux'
 import { Add } from 'state/actions/category'
-import { Add as TodoAdd } from 'state/actions/todo'
+import { Add as TodoAdd, Update } from 'state/actions/todo'
 import { SelectedTypes } from 'state/models/Selected'
 import { RootState } from 'state'
 
@@ -26,6 +26,11 @@ const Actions: FC<ActionsProps> = () => {
     // S = Stay Active
     const [Active, setActive] = useState({ A: false, S: false })
 
+    useEffect(() => {
+        if (Selected.active) setActive({ A: true, S: true })
+        else setActive({ ...Active, S: false })
+    }, [Selected])
+
     const AddTodo = () => {
         console.log('gg')
         if (Selected.categories[0]) {
@@ -35,10 +40,13 @@ const Actions: FC<ActionsProps> = () => {
         }
     }
 
-    useEffect(() => {
-        if (Selected.active) setActive({ A: true, S: true })
-        else setActive({ ...Active, S: false })
-    }, [Selected])
+    const ToggleMark = (A: 'mark' | 'unmark') => {
+        const checked = A === 'mark'
+
+        Selected.todos.forEach(({ id }) => {
+            dispatch(Update({ id: id, checked: checked }))
+        })
+    }
 
     const ActionsData: Omit<ActionSvgProps, 'index'>[] = [
         {
@@ -53,6 +61,7 @@ const Actions: FC<ActionsProps> = () => {
         },
         {
             className: 'mark',
+            onClick: () => ToggleMark('mark'),
             icon:
                 'M1.61 1.16A.46.46 90 012.07.7H3.91A.46.46 90 014.' +
                 '37 1.16V4.26A.11.11 90 014.19 4.36L2.99 3.71 1.79' +
@@ -66,6 +75,7 @@ const Actions: FC<ActionsProps> = () => {
         },
         {
             className: 'unmark',
+            onClick: () => ToggleMark('unmark'),
             icon:
                 'M1.61 1.16A.46.46 90 012.07.7H3.91A.46.46 90 014.' +
                 '37 1.16V4.26A.11.11 90 014.19 4.36L2.99 3.71 1.79' +
