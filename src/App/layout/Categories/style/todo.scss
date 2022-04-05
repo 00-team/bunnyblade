@@ -53,16 +53,16 @@
             .hover-anime {
                 pointer-events: none;
                 position: absolute;
-                bottom: $border_height * -2;
+                bottom: 0;
                 left: 0;
                 right: 0;
                 height: $border_height;
-                background-color: currentColor;
-                transition: bottom 300ms;
+                background-color: #0000;
+                transition: background-color 400ms;
             }
 
             &:hover .hover-anime {
-                bottom: 0;
+                background-color: currentColor;
             }
         }
     }
